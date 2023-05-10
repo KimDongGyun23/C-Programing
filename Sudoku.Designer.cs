@@ -37,7 +37,7 @@
             this.BtnFinish = new System.Windows.Forms.Button();
             this.BtnReset = new System.Windows.Forms.Button();
             this.lblText = new System.Windows.Forms.Label();
-            this.colorTmr = new System.Windows.Forms.Timer(this.components);
+            this.msgTmr = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.난이도조절ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.그리드크기변경ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,30 +58,33 @@
             // 
             // BtnCorrect
             // 
+            this.BtnCorrect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnCorrect.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnCorrect.Location = new System.Drawing.Point(666, 186);
             this.BtnCorrect.Name = "BtnCorrect";
             this.BtnCorrect.Size = new System.Drawing.Size(124, 47);
             this.BtnCorrect.TabIndex = 0;
             this.BtnCorrect.Text = "Correct";
-            this.BtnCorrect.UseVisualStyleBackColor = true;
+            this.BtnCorrect.UseVisualStyleBackColor = false;
             this.BtnCorrect.Click += new System.EventHandler(this.BtnCorrect_Click);
             // 
             // BtnStart
             // 
+            this.BtnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnStart.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnStart.Location = new System.Drawing.Point(40, 186);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.Size = new System.Drawing.Size(124, 47);
             this.BtnStart.TabIndex = 1;
             this.BtnStart.Text = "Start";
-            this.BtnStart.UseVisualStyleBackColor = true;
+            this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // sudokuGrid
             // 
             this.sudokuGrid.AllowUserToAddRows = false;
             this.sudokuGrid.AllowUserToDeleteRows = false;
+            this.sudokuGrid.BackgroundColor = System.Drawing.Color.LightGray;
             this.sudokuGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sudokuGrid.Location = new System.Drawing.Point(220, 139);
             this.sudokuGrid.Margin = new System.Windows.Forms.Padding(4);
@@ -109,39 +112,42 @@
             // 
             // BtnFinish
             // 
+            this.BtnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnFinish.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFinish.Location = new System.Drawing.Point(40, 278);
             this.BtnFinish.Name = "BtnFinish";
             this.BtnFinish.Size = new System.Drawing.Size(124, 47);
             this.BtnFinish.TabIndex = 3;
             this.BtnFinish.Text = "Finish";
-            this.BtnFinish.UseVisualStyleBackColor = true;
+            this.BtnFinish.UseVisualStyleBackColor = false;
             this.BtnFinish.Click += new System.EventHandler(this.BtnFinish_Click);
             // 
             // BtnReset
             // 
+            this.BtnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnReset.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnReset.Location = new System.Drawing.Point(666, 278);
             this.BtnReset.Name = "BtnReset";
             this.BtnReset.Size = new System.Drawing.Size(124, 47);
             this.BtnReset.TabIndex = 4;
             this.BtnReset.Text = "Reset";
-            this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.UseVisualStyleBackColor = false;
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // lblText
             // 
-            this.lblText.Location = new System.Drawing.Point(265, 98);
+            this.lblText.Font = new System.Drawing.Font("휴먼엑스포", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblText.Location = new System.Drawing.Point(240, 98);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(300, 20);
+            this.lblText.Size = new System.Drawing.Size(350, 20);
             this.lblText.TabIndex = 5;
-            this.lblText.Text = "열심히 도전하세요.";
+            this.lblText.Text = "게임을 시작해 주세요.";
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // colorTmr
+            // msgTmr
             // 
-            this.colorTmr.Interval = 1000;
-            this.colorTmr.Tick += new System.EventHandler(this.colorTmr_Tick);
+            this.msgTmr.Interval = 1000;
+            this.msgTmr.Tick += new System.EventHandler(this.msgTmr_Tick);
             // 
             // menuStrip1
             // 
@@ -176,13 +182,13 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(124, 26);
             this.toolStripMenuItem2.Text = "4 * 4";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(224, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(124, 26);
             this.toolStripMenuItem3.Text = "9 * 9";
             // 
             // 숫자생성개수변화ToolStripMenuItem
@@ -199,19 +205,19 @@
             // eASYToolStripMenuItem
             // 
             this.eASYToolStripMenuItem.Name = "eASYToolStripMenuItem";
-            this.eASYToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.eASYToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.eASYToolStripMenuItem.Text = "EASY";
             // 
             // mEDIUMToolStripMenuItem
             // 
             this.mEDIUMToolStripMenuItem.Name = "mEDIUMToolStripMenuItem";
-            this.mEDIUMToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.mEDIUMToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.mEDIUMToolStripMenuItem.Text = "MEDIUM";
             // 
             // hARDToolStripMenuItem
             // 
             this.hARDToolStripMenuItem.Name = "hARDToolStripMenuItem";
-            this.hARDToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.hARDToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.hARDToolStripMenuItem.Text = "HARD";
             // 
             // 타임어택ToolStripMenuItem
@@ -228,31 +234,32 @@
             // 분ToolStripMenuItem
             // 
             this.분ToolStripMenuItem.Name = "분ToolStripMenuItem";
-            this.분ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
             this.분ToolStripMenuItem.Text = "10분";
             // 
             // 분ToolStripMenuItem1
             // 
             this.분ToolStripMenuItem1.Name = "분ToolStripMenuItem1";
-            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(123, 26);
             this.분ToolStripMenuItem1.Text = "7분";
             // 
             // 분ToolStripMenuItem2
             // 
             this.분ToolStripMenuItem2.Name = "분ToolStripMenuItem2";
-            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(123, 26);
             this.분ToolStripMenuItem2.Text = "5분";
             // 
             // 분ToolStripMenuItem3
             // 
             this.분ToolStripMenuItem3.Name = "분ToolStripMenuItem3";
-            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(123, 26);
             this.분ToolStripMenuItem3.Text = "3분";
             // 
             // Sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(812, 553);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.BtnReset);
@@ -285,7 +292,7 @@
         private Button BtnFinish;
         private Button BtnReset;
         private Label lblText;
-        private System.Windows.Forms.Timer colorTmr;
+        private System.Windows.Forms.Timer msgTmr;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem 난이도조절ToolStripMenuItem;
         private ToolStripMenuItem 그리드크기변경ToolStripMenuItem;

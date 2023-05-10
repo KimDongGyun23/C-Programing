@@ -22,8 +22,6 @@ namespace Sudoku_Play
         const int MAXINPUTVALUE = 9;
         const int MININPUTVALUE = 1;
 
-        // Font ft = new Font("맑은 고딕", 9, FontStyle.Bold);
-
         // 타이머 변수
         int nCount = 0;
         int colorChange = 0;
@@ -91,59 +89,6 @@ namespace Sudoku_Play
             }
         }
 
-        private void BtnCorrect_Click(object sender, EventArgs e)
-        {
-            if (!gameBoard.IsValidSudoku())
-            {
-                // 행 유효성 검사
-                for (int i = 0; i < gameBoard.Size; i++)
-                {
-                    if (!gameBoard.IsValidGroup(GroupType.Row, i))
-                    {
-                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Row, i))
-                        {
-                            isValid[9 * tuple.Item1 + tuple.Item2] = false;
-                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
-                            colorTmr.Start();
-                            BtnCorrect.Enabled = false;
-                        }
-                    }
-                }
-
-                // 열 유효성 검사
-                for (int i = 0; i < gameBoard.Size; i++)
-                {
-                    if (!gameBoard.IsValidGroup(GroupType.Colum, i))
-                    {
-                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Colum, i))
-                        {
-                            isValid[9 * tuple.Item1 + tuple.Item2] = false;
-                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
-                            colorTmr.Start();
-                            BtnCorrect.Enabled = false;
-                        }
-                    }
-                }
-
-                // 그룹 유효성 검사
-                for (int i = 0; i < gameBoard.Size; i++)
-                {
-                    if (!gameBoard.IsValidGroup(GroupType.Area, i))
-                    {
-                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Area, i))
-                        {
-                            isValid[9 * tuple.Item1 + tuple.Item2] = false;
-                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
-                            colorTmr.Start();
-                            BtnCorrect.Enabled = false;
-                        }
-                    }
-                }
-            }
-        }
-
-        // 4
-
         // 한 그룹당 열 3개를 포함한다고 생각
         // 그룹의 번호를 입력받아 해당 그룸 내에서 열들을 섞고, 그룹별로 열들을 다시 섞음
         // groupNum : 해당하는 그룹의 첫번째 열
@@ -183,12 +128,13 @@ namespace Sudoku_Play
             }
         }
 
-        // 한 그룹당 행 3개를 포함한다고 생각        
-        // 그룹의 번호를 입력받아 해당 그룸 내에서 행들을 섞고, 그룹별로 행들을 다시 섞음
-        // groupNum : 해당하는 그룹의 첫번째 행
-        // groupNum = 0 : 0행, 1행, 2행
-        // groupNum = 3 : 3행, 4행, 5행
-        // groupNum = 6 : 6행, 7행, 8행
+        /// 한 그룹당 행 3개를 포함한다고 생각        
+        /// 그룹의 번호를 입력받아 해당 그룸 내에서 행들을 섞고, 그룹별로 행들을 다시 섞음
+        /// groupNum : 해당하는 그룹의 첫번째 행
+        /// groupNum = 0 : 0행, 1행, 2행
+        /// groupNum = 3 : 3행, 4행, 5행
+        /// groupNum = 6 : 6행, 7행, 8행
+
         private void SuffleCol(int groupNum, int n)
         {
             // n번 만큼 반복
@@ -237,56 +183,8 @@ namespace Sudoku_Play
             SuffleRow(6, randNum);
             SuffleCol(6, randNum);
         }
-        // 4
-
-        // 생성된 sudoku gameboard를 form에 표시
-        private void BtnStart_Click(object sender, EventArgs e)
-        {
-            // 5
-
-            // Start 버튼 비활성화
-            BtnStart.Enabled = false;
-
-            // 타이머 시작
-            tmr.Start();
-            Rand_Num_Make();
-            // 5
 
 
-            for (int i = 0; i < gameBoard.Size; i++)
-            {
-                for (int j = 0; j < gameBoard.Size; j++)
-                {
-                    gameBoard[i, j] = answerArray[i, j];
-                    Label cell = cells[9 * i + j];
-
-
-                    // 6
-                    Random randObj1 = new Random();
-
-                    // set cell value
-
-                    // 자신의 값보다 +- 1만큼의 난수를 생성하여 해당 난수와 동일한 값일 경우 마스킹처리
-                    // 난수의 범위를 지정한다면 난이도 조절 가능할 것으로 예상됨
-                    // 추후 구현
-
-                    if (gameBoard[i, j] == randObj1.Next(gameBoard[i, j] - 1, gameBoard[i, j] + 1))
-                    {
-                        gameBoard[i, j] = 0;
-                        cell.Text = "";
-                    }
-                    // 동일하지 않은 경우에만 값을 출력
-                    else
-                        cell.Text = gameBoard[i, j].ToString();
-                    // 6
-
-                    // add cell event
-                    cell.MouseDoubleClick += Cell_DoubleClick;
-                    cell.MouseEnter += Cell_Enter;
-                    cell.MouseLeave += Cell_Leave;
-                }
-            }
-        }
 
         // cell을 더블클릭 시 입력창이 나와 값을 수정할 수 있음.
         // 입력창은 enter와 esc에 반응함.
@@ -295,7 +193,10 @@ namespace Sudoku_Play
             Label? cell = (Label?)sender;
             TextBox inputCell = new TextBox();
 
-            inputCell.BackColor = (isValid[(int)cell.Tag] ? DEFAULTCOLOR : INVALIDCOLOR);
+            inputCell.BackColor = DEFAULTCOLOR;
+            
+            // inputCell.BackColor = (isValid[(int)cell.Tag] ? DEFAULTCOLOR : INVALIDCOLOR);
+
             inputCell.TextAlign = HorizontalAlignment.Center;
             inputCell.BorderStyle = BorderStyle.None;
             inputCell.Width = cell.Width;
@@ -306,8 +207,10 @@ namespace Sudoku_Play
 
             cell.Controls.Add(inputCell);
             inputCell.Focus();
-        }
 
+            /// 더블클릭 후, 해당 셀에 텍스트가 비어있으면 gameBoard 값을 0으로 만들기
+
+        }
 
         private void Cell_Enter(object? sender, EventArgs e)
         {
@@ -323,16 +226,15 @@ namespace Sudoku_Play
             Label? cell = (Label?)sender;
 
             int cellNumber = (int)cell.Tag;
-
-            //if (isValid[(int)cell.Tag])
-            //{
+          
+            if (isValid[(int)cell.Tag])
+            {
                 cell.BackColor = DEFAULTCOLOR;
-            //}
-/*            else
+            }
+            else
             {
                 cell.BackColor = INVALIDCOLOR;
             }
-*/
         }
 
         // cell 더블클릭 시 나오는 입력창 제어에 사용되는 이벤트.
@@ -412,6 +314,141 @@ namespace Sudoku_Play
             lbltmr.Text = hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");
         }
 
+        
+        private void msgTmr_Tick(object sender, EventArgs e)
+        {
+            ++colorChange;
+
+            if (colorChange == 2)
+            {
+                // 모든 셀 다시 기본 색상으로 변경
+                foreach (Label cell in cells)
+                {
+                    cell.BackColor = DEFAULTCOLOR;
+                }
+
+
+                // label 문구 다시 초기화
+                msgTmr.Stop();
+                colorChange = 0;
+                lblText.Text = "끝까지 도전해보세요.";
+                BtnCorrect.Enabled = true;
+
+                isValid.Clear();
+
+                for(int i = 0; i < cells.Count; i++)
+                    isValid.Add(true);
+            }
+        }
+
+
+        /// START 버튼 구현
+        /// 생성된 sudoku gameboard를 form에 표시
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            // Start 버튼 비활성화
+            BtnStart.Enabled = false;
+
+            // 타이머 시작 및 정답값 랜덤 생성
+            tmr.Start();
+            Rand_Num_Make();
+            lblText.Text = lblText.Text = "끝까지 도전해보세요.";
+
+
+            for (int i = 0; i < gameBoard.Size; i++)
+            {
+                for (int j = 0; j < gameBoard.Size; j++)
+                {
+                    gameBoard[i, j] = answerArray[i, j];
+                    Label cell = cells[9 * i + j];
+
+                    Random randObj1 = new Random();
+
+                    // set cell value
+
+                    // 자신의 값보다 +- 1만큼의 난수를 생성하여 해당 난수와 동일한 값일 경우 마스킹처리
+                    // 랜덤값과 해당 칸의 숫자가 동일하지 않은 경우에만 값을 출력
+                    // 난수의 범위를 지정한다면 난이도 조절 가능할 것으로 예상됨
+                    // 추후 구현
+
+                    if (gameBoard[i, j] == randObj1.Next(gameBoard[i, j] - 1, gameBoard[i, j] + 1))
+                    {
+                        gameBoard[i, j] = 0;
+                        cell.Text = "";
+                    }
+                    else
+                    {
+                        cell.Text = gameBoard[i, j].ToString();
+                    }
+
+                    // add cell event
+                    cell.MouseDoubleClick += Cell_DoubleClick;
+                    cell.MouseEnter += Cell_Enter;
+                    cell.MouseLeave += Cell_Leave;
+                }
+            }
+        }
+
+        // Correct 버튼 구현
+        private void BtnCorrect_Click(object sender, EventArgs e)
+        {
+            if (!gameBoard.IsValidSudoku())
+            {
+                lblText.Text = "틀린 부분이 있군요. 다시 생각해보세요.";
+
+                // 행 유효성 검사
+                for (int i = 0; i < gameBoard.Size; i++)
+                {
+                    if (!gameBoard.IsValidGroup(GroupType.Row, i))
+                    {
+                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Row, i))
+                        {
+                            isValid[9 * tuple.Item1 + tuple.Item2] = false;
+                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
+                        }
+                    }
+                }
+
+                // 열 유효성 검사
+                for (int i = 0; i < gameBoard.Size; i++)
+                {
+                    if (!gameBoard.IsValidGroup(GroupType.Colum, i))
+                    {
+                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Colum, i))
+                        {
+                            isValid[9 * tuple.Item1 + tuple.Item2] = false;
+                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
+                        }
+                    }
+                }
+
+                // 그룹 유효성 검사
+                for (int i = 0; i < gameBoard.Size; i++)
+                {
+                    if (!gameBoard.IsValidGroup(GroupType.Area, i))
+                    {
+                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Area, i))
+                        {
+                            isValid[9 * tuple.Item1 + tuple.Item2] = false;
+                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                lblText.Text = "올바르게 입력되었습니다.";
+            }
+            
+            // 2초 뒤 원래의 색으로 돌아오도록 설정
+            // Correct 버튼 연속 입력 방지하기 위해 비활성화
+            msgTmr.Start();
+            BtnCorrect.Enabled = false;
+        }
+
+        /// Finish 버튼 구현
+        /// 셀에 모든 값들이 입력되었고 규칙에 위배되지않으면 성공 문구 출력
+        /// 성공 시, 타이머 정지
         private void BtnFinish_Click(object sender, EventArgs e)
         {
 
@@ -433,15 +470,21 @@ namespace Sudoku_Play
                 tmr.Stop();
             }
             else
+            {
                 lblText.Text = "틀린 곳이 있군요! 다시 수정해보세요.";
+                msgTmr.Start();
+            }
         }
 
+        /// Reset 버튼 구현
+        /// 셀의 값들을 모두 지우고 타이머 초기화
+        /// Start 버튼 활성화 및 라벨 텍스트 초기화
         private void BtnReset_Click(object sender, EventArgs e)
         {
             // Finish 버튼보다 Reset 버튼을 먼저 누르는 경우 방지하여 타이머 정지
             tmr.Stop();
 
-            // 현재 보여진 셀의 값을 모두 지움
+            // 셀의 값을 모두 지움
             ClearCells();
 
             // 타이머 초기화
@@ -452,39 +495,7 @@ namespace Sudoku_Play
             BtnStart.Enabled = true;
 
             // 라벨 텍스트 초기화
-            lblText.Text = "열심히 도전하세요.";
-
-
-        }
-
-        private void colorTmr_Tick(object sender, EventArgs e)
-        {
-            ++colorChange;
-
-            if (colorChange == 2)
-            {
-                for (int i = 0; i < gameBoard.Size; i++)
-                {
-                    if (!gameBoard.IsValidGroup(GroupType.Row, i))
-                    {
-                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Row, i))
-                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = DEFAULTCOLOR;
-                    }
-                    if (!gameBoard.IsValidGroup(GroupType.Colum, i))
-                    {
-                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Colum, i))
-                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = DEFAULTCOLOR;
-                    }
-                    if (!gameBoard.IsValidGroup(GroupType.Area, i))
-                    {
-                        foreach (Tuple<int, int> tuple in gameBoard.FindWrongCells(GroupType.Area, i))
-                            cells[9 * tuple.Item1 + tuple.Item2].BackColor = DEFAULTCOLOR;
-                    }
-                }
-                colorTmr.Stop();
-                colorChange = 0;
-                BtnCorrect.Enabled = true;
-            }
+            lblText.Text = "게임을 시작해 주세요.";
         }
 
         private void 숫자생성개수변화ToolStripMenuItem_Click(object sender, EventArgs e)
