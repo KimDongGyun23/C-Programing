@@ -2,7 +2,7 @@
 using SudokuDataLib;
 class Program
 {
-    static int number = 0;
+    static int number = 1;
     static bool[][,] fixed_cell_example = new bool[][,]{
         new bool[,] {
             {true, false, false, true, true, false, false, false, true},
@@ -110,7 +110,7 @@ class Program
     static void Main()
     {
         //생성자 호출 예시
-        GameBoard gameBorad = new GameBoard(9, null, Program.fixed_cell_example[number], Program.test_case[number]);
+        GameBoard gameBorad = new GameBoard(3, null, Program.fixed_cell_example[number], Program.test_case[number]);
 
         //속성 호출 예시
         for (int i = 0; i < 9; i++)

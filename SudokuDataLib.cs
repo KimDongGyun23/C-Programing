@@ -24,7 +24,7 @@ namespace SudokuDataLib
         private int area_group;
 
         //생성자
-        internal Cell(int max_val = 9)
+        internal Cell(int max_val)
         {
             this.min_val = 0;
             this.max_val = max_val;
@@ -65,7 +65,9 @@ namespace SudokuDataLib
 
     internal class SquareGrid
     {
-        private int size;
+        private int grid_size;
+        private int block_size;
+
         private Cell[,] grid;
 
         private List<Cell>[] row_group;
@@ -73,33 +75,28 @@ namespace SudokuDataLib
         private List<Cell>[] area_group;
 
         //생성자
-        internal SquareGrid(int size = 9, int[,] area_group_grid = null)
+        internal SquareGrid(int block_size = 3, int[,] area_group_grid = null)
         {
             //default 값 설정
             if (area_group_grid == null)
             {
-                area_group_grid = new int[,]{
-                    { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
-                    { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
-                    { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
-                    { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
-                    { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
-                    { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
-                    { 6, 6, 6, 7, 7, 7, 8, 8, 8 },
-                    { 6, 6, 6, 7, 7, 7, 8, 8, 8 },
-                    { 6, 6, 6, 7, 7, 7, 8, 8, 8 }
-                    };
+                area_group_grid=GridGenerator.GenerateDefaultAreaGrid(block_size);
             }
 
-            this.size = size;
-            grid = new Cell[size, size];
-            AllocateGroupGrid(size);
+            this.block_size= block_size;
 
-            for (int n = 0; n < size; n++)
+            grid_size = block_size*block_size;
+
+            grid = new Cell[grid_size, grid_size];
+            InitGrid(grid_size);
+
+            AllocateGroupList(grid_size);
+
+            for (int n = 0; n < grid_size; n++)
             {
-                for (int m = 0; m < size; m++)
+                for (int m = 0; m < grid_size; m++)
                 {
-                    grid[n, m] = new Cell(size);
+                    grid[n, m] = new Cell(grid_size);
 
                     SetCellGroup(n, m, area_group_grid[n, m]);
                 }
@@ -115,9 +112,14 @@ namespace SudokuDataLib
             set { grid[n, m].Value = value; }
         }
 
-        internal int Size
+        internal int GridSize
         {
-            get { return size; }
+            get { return grid_size; }
+        }
+
+        internal int BlockSize
+        {
+            get { return block_size; }
         }
 
         //중복값 확인 메소드
@@ -146,7 +148,7 @@ namespace SudokuDataLib
 
         internal bool IsValidSudoku()
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < grid_size; i++)
             {
                 if (!IsValidRow(i))
                     return false;
@@ -165,10 +167,10 @@ namespace SudokuDataLib
         //현재 격자 값 배열을 생성하는 메소드
         internal int[,] GetGridValue()
         {
-            int[,] result = new int[size, size];
-            for (int n = 0; n < size; n++)
+            int[,] result = new int[grid_size, grid_size];
+            for (int n = 0; n < grid_size; n++)
             {
-                for (int m = 0; m < size; m++)
+                for (int m = 0; m < grid_size; m++)
                     result[n, m] = grid[n, m].Value;
             }
             return result;
@@ -200,19 +202,30 @@ namespace SudokuDataLib
         }
 
         //메소드 구현을 위한 private 메소드
-        private void AllocateGroupGrid(int size)
+        private void AllocateGroupList(int grid_size)
         {
-            row_group = new List<Cell>[size];
-            col_group = new List<Cell>[size];
-            area_group = new List<Cell>[size];
+            row_group = new List<Cell>[grid_size];
+            col_group = new List<Cell>[grid_size];
+            area_group = new List<Cell>[grid_size];
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < grid_size; i++)
             {
                 row_group[i] = new List<Cell>();
                 col_group[i] = new List<Cell>();
                 area_group[i] = new List<Cell>();
             }
 
+        }
+
+        private void InitGrid(int grid_size)
+        {
+            for (int n = 0; n < grid_size; n++)
+            {
+                for (int m = 0; m < grid_size; m++)
+                {
+                    grid[n, m] = new Cell(grid_size);
+                }
+            }
         }
 
         private void SetCellGroup(int row, int col, int area)
@@ -224,9 +237,9 @@ namespace SudokuDataLib
 
         private void FillCellGroup()
         {
-            for (int n = 0; n < size; n++)
+            for (int n = 0; n < grid_size; n++)
             {
-                for (int m = 0; m < size; m++)
+                for (int m = 0; m < grid_size; m++)
                 {
                     row_group[grid[n, m].Row].Add(grid[n, m]);
                     col_group[grid[n, m].Colum].Add(grid[n, m]);
@@ -237,7 +250,7 @@ namespace SudokuDataLib
 
         private bool IsValidRow(int row)
         {
-            bool[] bools = new bool[size + 1];
+            bool[] bools = new bool[grid_size + 1];
             Array.Fill(bools, false);
 
             foreach (Cell cell in row_group[row])
@@ -255,7 +268,7 @@ namespace SudokuDataLib
 
         private bool IsValidColum(int col)
         {
-            bool[] bools = new bool[size + 1];
+            bool[] bools = new bool[grid_size + 1];
             Array.Fill(bools, false);
 
             foreach (Cell cell in col_group[col])
@@ -272,8 +285,8 @@ namespace SudokuDataLib
         }
 
         private bool IsValidArea(int area)
-        {
-            bool[] bools = new bool[size + 1];
+        {   
+            bool[] bools = new bool[grid_size + 1];
             Array.Fill(bools, false);
 
             foreach (Cell cell in area_group[area])
@@ -288,21 +301,23 @@ namespace SudokuDataLib
 
             return true;
         }
+
         private bool isFilled()
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < grid_size; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < grid_size; j++)
                     if (grid[i, j].Value == 0)
                         return false;
             }
             return true;
         }
+
         private List<Cell> FindWrongCells(List<Cell> target_group)
         {
             List<Cell> wrong_cell = new List<Cell>();
 
-            int[] number_cnt = new int[size + 1];
+            int[] number_cnt = new int[grid_size + 1];
             Array.Fill(number_cnt, 0);
 
             foreach (Cell cell in target_group)
@@ -321,9 +336,9 @@ namespace SudokuDataLib
         {
             List<Tuple<int, int>> result = new List<Tuple<int, int>>();
 
-            for (int n = 0; n < size; n++)
+            for (int n = 0; n < grid_size; n++)
             {
-                for (int m = 0; m < size; m++)
+                for (int m = 0; m < grid_size; m++)
                 {
                     if (cells.Contains(grid[n, m]))
                         result.Add(new Tuple<int, int>(n, m));
@@ -336,7 +351,8 @@ namespace SudokuDataLib
 
     public class GameBoard
     {
-        int size;
+        int block_size;
+        int grid_size;
 
         SquareGrid grid;
 
@@ -346,12 +362,14 @@ namespace SudokuDataLib
         Stack<int[,]> grid_change_log;
 
         //생성자
-        public GameBoard(int size = 9, int[,] area_group_grid = null, bool[,] fixed_cells_grid = null, int[,] value_grid = null)
+        public GameBoard(int block_size = 3, int[,] area_group_grid = null, bool[,] fixed_cells_grid = null, int[,] value_grid = null)
         {
-            grid = new SquareGrid(size, area_group_grid);
-            this.size = grid.Size;
+            grid = new SquareGrid(block_size, area_group_grid);
 
-            this.fixed_cells = new bool[9, 9];
+            this.block_size = grid.BlockSize;
+            grid_size = grid.GridSize;
+
+            this.fixed_cells = new bool[grid_size, grid_size];
 
             input_log = new Stack<Tuple<int, int, int>>();
             grid_change_log = new Stack<int[,]>();
@@ -382,9 +400,14 @@ namespace SudokuDataLib
             }
         }
 
-        public int Size
+        public int BlockSize
         {
-            get { return size; }
+            get { return block_size; }
+        }
+
+        public int GridSize
+        {
+            get { return grid_size; }
         }
 
 
@@ -428,7 +451,7 @@ namespace SudokuDataLib
             int rows = fixed_cells.GetLength(0);
             int cols = fixed_cells.GetLength(1);
 
-            if (rows != size || cols != size)
+            if (rows != grid_size || cols != grid_size)
             {
                 Environment.FailFast("게임판에 맞는 배열을 입력하세요.");
                 return;
@@ -446,7 +469,7 @@ namespace SudokuDataLib
             int rows = InitGird.GetLength(0);
             int cols = InitGird.GetLength(1);
 
-            if (rows != size || cols != size)
+            if (rows != grid_size || cols != grid_size)
             {
                 Environment.FailFast("게임판에 맞는 배열을 입력하세요.");
                 return;
@@ -460,42 +483,43 @@ namespace SudokuDataLib
         }
     }
 
-    public static class BoardGenerator
+    public static class GridGenerator
     {
-        public static bool[,] GenerateRandomFixedCellGrid(int size, int fixed_num)
+        public static bool[,] GenerateRandomFixedCellGrid(int block_size, int fixed_num)
         {
             return null;
         }
 
-        public static int[,] GenerateRandomValueGrid(int size)
+        public static int[,] GenerateRandomValueGrid(int block_size)
         {
             return null;
         }
 
-        public static int[,] GenerateRandomAreaGrid(int size)
+        public static int[,] GenerateRandomAreaGrid(int block_size)
         {
             // 변형 스도쿠 추가시 구현
             return null;
         }
 
-        public static int[,] GenerateDefaultAreaGrid(int size)
+        public static int[,] GenerateDefaultAreaGrid(int block_size)
         {
-            int[,] area_grid = new int[size * size, size * size];
-            for (int i = 0; i < size; i++)
+            int[,] area_grid = new int[block_size * block_size, block_size * block_size];
+            for (int i = 0; i < block_size; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < block_size; j++)
                 {
-                    int n = i * size;
-                    int m = j * size;
-                    for (int k = 0; k < size; k++)
+                    int n = i * block_size;
+                    int m = j * block_size;
+                    for (int k = 0; k < block_size; k++)
                     {
-                        for (int p = 0; p < size; p++)
+                        for (int p = 0; p < block_size; p++)
                         {
                             area_grid[n + k, m + p] = 3 * i + j;
                         }
                     }
                 }
             }
+
             return area_grid;
         }
     }
