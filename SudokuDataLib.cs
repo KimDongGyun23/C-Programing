@@ -73,12 +73,12 @@ namespace SudokuDataLib
         private List<Cell>[] area_group;
 
         //생성자
-        internal SquareGrid(int size = 9, int[,] area_group_array = null)
+        internal SquareGrid(int size = 9, int[,] area_group_grid = null)
         {
             //default 값 설정
-            if (area_group_array == null)
+            if (area_group_grid == null)
             {
-                area_group_array = new int[,]{
+                area_group_grid = new int[,]{
                     { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
                     { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
                     { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
@@ -93,7 +93,7 @@ namespace SudokuDataLib
 
             this.size = size;
             grid = new Cell[size, size];
-            AllocateGroupArray(size);
+            AllocateGroupGrid(size);
 
             for (int n = 0; n < size; n++)
             {
@@ -101,7 +101,7 @@ namespace SudokuDataLib
                 {
                     grid[n, m] = new Cell(size);
 
-                    SetCellGroup(n, m, area_group_array[n, m]);
+                    SetCellGroup(n, m, area_group_grid[n, m]);
                 }
             }
 
@@ -156,7 +156,7 @@ namespace SudokuDataLib
                     return false;
             }
 
-            if(!isFilled())
+            if (!isFilled())
                 return false;
 
             return true;
@@ -200,7 +200,7 @@ namespace SudokuDataLib
         }
 
         //메소드 구현을 위한 private 메소드
-        private void AllocateGroupArray(int size)
+        private void AllocateGroupGrid(int size)
         {
             row_group = new List<Cell>[size];
             col_group = new List<Cell>[size];
@@ -290,10 +290,10 @@ namespace SudokuDataLib
         }
         private bool isFilled()
         {
-            for(int i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
-                for(int  j = 0; j < size; j++)
-                    if (grid[i,j].Value==0)
+                for (int j = 0; j < size; j++)
+                    if (grid[i, j].Value == 0)
                         return false;
             }
             return true;
@@ -334,7 +334,7 @@ namespace SudokuDataLib
         }
     }
 
-    public class GameBorad
+    public class GameBoard
     {
         int size;
 
@@ -346,9 +346,9 @@ namespace SudokuDataLib
         Stack<int[,]> grid_change_log;
 
         //생성자
-        public GameBorad(int size = 9, int[,] area_group_array = null, bool[,] fixed_cells = null, int[,] init_grid = null)
+        public GameBoard(int size = 9, int[,] area_group_grid = null, bool[,] fixed_cells_grid = null, int[,] value_grid = null)
         {
-            grid = new SquareGrid(size,area_group_array);
+            grid = new SquareGrid(size, area_group_grid);
             this.size = grid.Size;
 
             this.fixed_cells = new bool[9, 9];
@@ -356,11 +356,11 @@ namespace SudokuDataLib
             input_log = new Stack<Tuple<int, int, int>>();
             grid_change_log = new Stack<int[,]>();
 
-            if (fixed_cells != null)
-                SetFixedCells(fixed_cells);
+            if (fixed_cells_grid != null)
+                SetFixedCells(fixed_cells_grid);
 
-            if (init_grid != null)
-                InitGirdValue(init_grid);
+            if (value_grid != null)
+                InitGirdValue(value_grid);
         }
 
         //속성 및 인덱서
@@ -381,10 +381,12 @@ namespace SudokuDataLib
                 grid_change_log.Push(grid.GetGridValue());
             }
         }
+
         public int Size
         {
             get { return size; }
         }
+
 
         //가장 최근에 입력한 셀의 위치와 이전 값을 반환하는 메소드
         public Tuple<int, int, int> Undo()
@@ -412,6 +414,12 @@ namespace SudokuDataLib
         public List<Tuple<int, int>> FindWrongCells(GroupType group_type, int group_num)
         {
             return grid.FindWrongCells(group_type, group_num);
+        }
+
+        //해당 셀이 고정됬는지 확인하는 메소드
+        public bool IsFixedCell(int n, int m)
+        {
+            return fixed_cells[n, m];
         }
 
         //메소드 구현을 위한 private 메소드
@@ -449,6 +457,46 @@ namespace SudokuDataLib
                 for (int j = 0; j < cols; j++)
                     grid[i, j] = InitGird[i, j];
             }
+        }
+    }
+
+    public static class BoardGenerator
+    {
+        public static bool[,] GenerateRandomFixedCellGrid(int size, int fixed_num)
+        {
+            return null;
+        }
+
+        public static int[,] GenerateRandomValueGrid(int size)
+        {
+            return null;
+        }
+
+        public static int[,] GenerateRandomAreaGrid(int size)
+        {
+            // 변형 스도쿠 추가시 구현
+            return null;
+        }
+
+        public static int[,] GenerateDefaultAreaGrid(int size)
+        {
+            int[,] area_grid = new int[size * size, size * size];
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    int n = i * size;
+                    int m = j * size;
+                    for (int k = 0; k < size; k++)
+                    {
+                        for (int p = 0; p < size; p++)
+                        {
+                            area_grid[n + k, m + p] = 3 * i + j;
+                        }
+                    }
+                }
+            }
+            return area_grid;
         }
     }
 }
