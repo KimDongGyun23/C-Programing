@@ -52,6 +52,7 @@
             this.분ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.타임어택모드끄기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.sudokuGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -226,7 +227,8 @@
             this.분ToolStripMenuItem,
             this.분ToolStripMenuItem1,
             this.분ToolStripMenuItem2,
-            this.분ToolStripMenuItem3});
+            this.분ToolStripMenuItem3,
+            this.타임어택모드끄기ToolStripMenuItem});
             this.타임어택ToolStripMenuItem.Name = "타임어택ToolStripMenuItem";
             this.타임어택ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.타임어택ToolStripMenuItem.Text = "타임어택";
@@ -234,26 +236,37 @@
             // 분ToolStripMenuItem
             // 
             this.분ToolStripMenuItem.Name = "분ToolStripMenuItem";
-            this.분ToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.분ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem.Text = "10분";
+            this.분ToolStripMenuItem.Click += new System.EventHandler(this.분ToolStripMenuItem_Click);
             // 
             // 분ToolStripMenuItem1
             // 
             this.분ToolStripMenuItem1.Name = "분ToolStripMenuItem1";
-            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(123, 26);
+            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem1.Text = "7분";
+            this.분ToolStripMenuItem1.Click += new System.EventHandler(this.분ToolStripMenuItem1_Click);
             // 
             // 분ToolStripMenuItem2
             // 
             this.분ToolStripMenuItem2.Name = "분ToolStripMenuItem2";
-            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(123, 26);
+            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem2.Text = "5분";
+            this.분ToolStripMenuItem2.Click += new System.EventHandler(this.분ToolStripMenuItem2_Click);
             // 
             // 분ToolStripMenuItem3
             // 
             this.분ToolStripMenuItem3.Name = "분ToolStripMenuItem3";
-            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(123, 26);
+            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem3.Text = "3분";
+            this.분ToolStripMenuItem3.Click += new System.EventHandler(this.분ToolStripMenuItem3_Click);
+            // 
+            // 타임어택모드끄기ToolStripMenuItem
+            // 
+            this.타임어택모드끄기ToolStripMenuItem.Name = "타임어택모드끄기ToolStripMenuItem";
+            this.타임어택모드끄기ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.타임어택모드끄기ToolStripMenuItem.Text = "타임어택모드 끄기";
+            this.타임어택모드끄기ToolStripMenuItem.Click += new System.EventHandler(this.타임어택모드끄기ToolStripMenuItem_Click);
             // 
             // Sudoku
             // 
@@ -307,5 +320,6 @@
         private ToolStripMenuItem 분ToolStripMenuItem1;
         private ToolStripMenuItem 분ToolStripMenuItem2;
         private ToolStripMenuItem 분ToolStripMenuItem3;
+        private ToolStripMenuItem 타임어택모드끄기ToolStripMenuItem;
     }
 }

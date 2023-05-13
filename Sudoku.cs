@@ -22,9 +22,12 @@ namespace Sudoku_Play
         const int MAXINPUTVALUE = 9;
         const int MININPUTVALUE = 1;
 
-        // 타이머 변수
-        int nCount = 0;
-        int colorChange = 0;
+        int nCount = 0;             // 타이머 시간변수
+        int colorChange = 0;        // msg 타이머 시간변수
+
+        int nAttCount = 0;          // 타임어택 모드 시간변수
+        bool timeAttack = false;    // 타임어택 여부 변수
+        string tmrText = "";        // 타임어택 시간을 라벨에 넘기기 위한 변수
 
         Color DEFAULTCOLOR = Color.White;
         Color SELECTEDCOLOR = Color.LightCyan;
@@ -295,7 +298,11 @@ namespace Sudoku_Play
         // 타이머 동작
         private void tmr_Tick(object sender, EventArgs e)
         {
-            nCount++;
+            if (timeAttack)
+                nCount--;
+            else
+                nCount++;
+
             int hour = 0, min = 0, sec = 0;
 
             if (nCount < 60)
@@ -312,6 +319,14 @@ namespace Sudoku_Play
                 sec = ((nCount % 3600) % 60);
             }
             lbltmr.Text = hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");
+
+            // 타임어택 시간 종료 시, 타이머 정지 및 라벨 초기화
+            if (nCount < 0)
+            {
+                lbltmr.Text = "00:00:00";
+                tmr.Stop();
+                lblText.Text = "게임을 클리어 하지 못했습니다.";
+            }
         }
 
         
@@ -326,7 +341,6 @@ namespace Sudoku_Play
                 {
                     cell.BackColor = DEFAULTCOLOR;
                 }
-
 
                 // label 문구 다시 초기화
                 msgTmr.Stop();
@@ -451,7 +465,6 @@ namespace Sudoku_Play
         /// 성공 시, 타이머 정지
         private void BtnFinish_Click(object sender, EventArgs e)
         {
-
             bool filled = true;    // 셀에 모든 수가 입력되었는지 확인
 
             for (int i = 0; i < gameBoard.Size; i++)
@@ -462,7 +475,6 @@ namespace Sudoku_Play
                         filled = false;
                 }
             }
-
 
             if (gameBoard.IsValidSudoku() && filled)
             {
@@ -487,10 +499,17 @@ namespace Sudoku_Play
             // 셀의 값을 모두 지움
             ClearCells();
 
-            // 타이머 초기화
-            nCount = 0;
-            lbltmr.Text = "00:00:00";
-
+            // 타임어택 모드 여부에 따라 타이머와 라벨 초기화
+            if (timeAttack)
+            {
+                nCount = nAttCount;
+                lbltmr.Text = tmrText;
+            }
+            else
+            {
+                nCount = 0;
+                lbltmr.Text = "00:00:00";
+            }
             // Start 버튼 활성화
             BtnStart.Enabled = true;
 
@@ -501,6 +520,44 @@ namespace Sudoku_Play
         private void 숫자생성개수변화ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+        private void 분ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timeAttack = true;
+            nAttCount = 60 * 10;
+            nCount = nAttCount;
+            tmrText = "00:10:00";
+            lbltmr.Text = tmrText;
+        }
+        private void 분ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            timeAttack = true;
+            nAttCount = 60 * 7;
+            nCount = nAttCount;
+            tmrText = "00:07:00";
+            lbltmr.Text = tmrText;
+        }
+        private void 분ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            timeAttack = true;
+            nAttCount = 60 * 5;
+            nCount = nAttCount;
+            tmrText = "00:05:00";
+            lbltmr.Text = tmrText;
+        }
+        private void 분ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            timeAttack = true;
+            nAttCount = 60 * 3;
+            nCount = nAttCount;
+            tmrText = "00:03:00";
+            lbltmr.Text = tmrText;
+        }
+        private void 타임어택모드끄기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timeAttack = false;
+            nCount = 0;
+            lbltmr.Text = "00:00:00";
         }
     }
 }
