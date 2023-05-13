@@ -8,28 +8,23 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\woohe\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\didwj\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\woohe\\OneDrive\\바탕 화면\\Sudoku_Play_v6\\Sudoku_Play.csproj",
+      "projectUniqueName": "C:\\Users\\didwj\\Desktop\\Stuffs\\C#\\C-Programing\\Sudoku_Play.csproj",
       "projectName": "Sudoku_Play",
-      "projectPath": "C:\\Users\\woohe\\OneDrive\\바탕 화면\\Sudoku_Play_v6\\Sudoku_Play.csproj",
-      "packagesPath": "C:\\Users\\woohe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\woohe\\OneDrive\\바탕 화면\\Sudoku_Play_v6\\obj\\",
+      "projectPath": "C:\\Users\\didwj\\Desktop\\Stuffs\\C#\\C-Programing\\Sudoku_Play.csproj",
+      "packagesPath": "C:\\Users\\didwj\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\didwj\\Desktop\\Stuffs\\C#\\C-Programing\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\woohe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\didwj\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "net6.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -56,7 +51,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -68,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

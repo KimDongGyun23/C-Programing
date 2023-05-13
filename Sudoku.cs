@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using SudokuDataLib;
+using drawing_test;
 
 namespace Sudoku_Play
 {
@@ -194,7 +195,7 @@ namespace Sudoku_Play
             TextBox inputCell = new TextBox();
 
             inputCell.BackColor = DEFAULTCOLOR;
-            
+
             // inputCell.BackColor = (isValid[(int)cell.Tag] ? DEFAULTCOLOR : INVALIDCOLOR);
 
             inputCell.TextAlign = HorizontalAlignment.Center;
@@ -226,7 +227,7 @@ namespace Sudoku_Play
             Label? cell = (Label?)sender;
 
             int cellNumber = (int)cell.Tag;
-          
+
             if (isValid[(int)cell.Tag])
             {
                 cell.BackColor = DEFAULTCOLOR;
@@ -314,7 +315,7 @@ namespace Sudoku_Play
             lbltmr.Text = hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");
         }
 
-        
+
         private void msgTmr_Tick(object sender, EventArgs e)
         {
             ++colorChange;
@@ -336,7 +337,7 @@ namespace Sudoku_Play
 
                 isValid.Clear();
 
-                for(int i = 0; i < cells.Count; i++)
+                for (int i = 0; i < cells.Count; i++)
                     isValid.Add(true);
             }
         }
@@ -439,7 +440,7 @@ namespace Sudoku_Play
             {
                 lblText.Text = "올바르게 입력되었습니다.";
             }
-            
+
             // 2초 뒤 원래의 색으로 돌아오도록 설정
             // Correct 버튼 연속 입력 방지하기 위해 비활성화
             msgTmr.Start();
