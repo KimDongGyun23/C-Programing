@@ -236,18 +236,23 @@ namespace Sudoku_Play
 
             if (e.KeyChar == (char)Keys.Return)
             {
-                if (!inputCell.Text.All(char.IsLetter)) // check text has non-numbers
+                if (inputCell.Text.All(char.IsDigit)) // check text has non-numbers
                 {
                     int inputValue = Int32.Parse(inputCell.Text);
 
+                    int cellNumber = (int)cell.Tag; // cellNumber = 9 * cellX + cellY
+                    int cellX = cellNumber / 9;
+                    int cellY = cellNumber % 9;
+
                     if (inputValue >= MININPUTVALUE && inputValue <= MAXINPUTVALUE)
                     {
-                        int cellNumber = (int)cell.Tag; // cellNumber = 9 * cellX + cellY
-                        int cellX = cellNumber / 9;
-                        int cellY = cellNumber % 9;
-
                         gameBoard[cellX, cellY] = inputValue;
                         cells[cellNumber].Text = inputValue.ToString();
+                    }
+                    else if(inputValue == 0)
+                    {
+                        gameBoard[cellX, cellY] = 0;
+                        cells[cellNumber].Text = "";
                     }
                 }
 
