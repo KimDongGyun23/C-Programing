@@ -28,6 +28,7 @@ namespace Sudoku_Play
         int colorChange = 0;
 
         Color DEFAULTCOLOR = Color.White;
+        //Color DEFAULTCOLOR = Color.FromArgb(255, 255, 192);
         Color SELECTEDCOLOR = Color.LightCyan;
         Color INVALIDCOLOR = Color.IndianRed;
 
@@ -52,42 +53,7 @@ namespace Sudoku_Play
         // 추후에 다른 형태도 구현할 시 형태 별로 따로 구현할 예정.
         private void Sudoku_Load(object sender, EventArgs e)
         {
-            int cellWidth = 40;
-            int cellHeight = 40;
-            int cellTopValue = 7;
 
-            // 숫자 비어있는 sudoku grid 생성
-            for (int i = 0; i < gameBoard.Size; i++)
-            {
-                int cellLeftValue = 7;
-
-                for (int j = 0; j < gameBoard.Size; j++)
-                {
-                    // create cell object
-                    Label cell = new Label();
-
-                    // set cell property
-                    cell.Tag = 9 * i + j;
-                    cell.BackColor = DEFAULTCOLOR;
-                    cell.TextAlign = ContentAlignment.MiddleCenter;
-                    cell.BorderStyle = BorderStyle.FixedSingle;
-                    cell.Width = cellWidth;
-                    cell.Height = cellHeight;
-                    cell.Top = cellTopValue;
-                    cell.Left = cellLeftValue;
-
-                    cells.Add(cell);
-                    isValid.Add(true);
-
-                    sudokuGrid.Controls.Add(cell); // sudokuGrid에 cell 추가
-
-                    // cell의 left value 갱신
-                    cellLeftValue += cellWidth + ((j + 1) % 3 == 0 ? 7 : 0);
-                }
-
-                // cell의 top value 갱신
-                cellTopValue += cellHeight + ((i + 1) % 3 == 0 ? 7 : 0);
-            }
         }
 
         // 한 그룹당 열 3개를 포함한다고 생각
@@ -194,7 +160,7 @@ namespace Sudoku_Play
             Label? cell = (Label?)sender;
             TextBox inputCell = new TextBox();
 
-            inputCell.BackColor = DEFAULTCOLOR;
+            inputCell.BackColor = cell.BackColor;
 
             // inputCell.BackColor = (isValid[(int)cell.Tag] ? DEFAULTCOLOR : INVALIDCOLOR);
 
@@ -205,12 +171,13 @@ namespace Sudoku_Play
             inputCell.Left = 0;
 
             inputCell.KeyPress += InputCell_KeyPress;
+            inputCell.MouseEnter += inputCell_MouseEnter;
+            inputCell.MouseLeave += inputCell_MouseLeave;
 
             cell.Controls.Add(inputCell);
             inputCell.Focus();
 
             /// 더블클릭 후, 해당 셀에 텍스트가 비어있으면 gameBoard 값을 0으로 만들기
-
         }
 
         private void Cell_Enter(object? sender, EventArgs e)
@@ -218,6 +185,13 @@ namespace Sudoku_Play
             Label? cell = (Label?)sender;
 
             cell.BackColor = SELECTEDCOLOR;
+
+            if(cell.HasChildren)
+            {
+                int index = cell.Controls.Count - 1;
+
+                cell.Controls[index].BackColor = SELECTEDCOLOR;
+            }
         }
 
         // 마우스 커서가 cell을 벗어날 시 cell의 색이 돌아옴.
@@ -231,10 +205,24 @@ namespace Sudoku_Play
             if (isValid[(int)cell.Tag])
             {
                 cell.BackColor = DEFAULTCOLOR;
+
+                if (cell.HasChildren)
+                {
+                    int index = cell.Controls.Count - 1;
+
+                    cell.Controls[index].BackColor = DEFAULTCOLOR;
+                }
             }
             else
             {
                 cell.BackColor = INVALIDCOLOR;
+
+                if (cell.HasChildren)
+                {
+                    int index = cell.Controls.Count - 1;
+
+                    cell.Controls[index].BackColor = INVALIDCOLOR;
+                }
             }
         }
 
@@ -248,7 +236,7 @@ namespace Sudoku_Play
 
             if (e.KeyChar == (char)Keys.Return)
             {
-                if (!inputCell.Text.Equals("")) // not input any numbers
+                if (!inputCell.Text.All(char.IsLetter)) // not input any numbers
                 {
                     int inputValue = Int32.Parse(inputCell.Text);
 
@@ -261,13 +249,49 @@ namespace Sudoku_Play
                         gameBoard[cellX, cellY] = inputValue;
                         cells[cellNumber].Text = inputValue.ToString();
                     }
-
-                    cell.Controls.Remove(inputCell); // 입력창 제거
                 }
+
+                inputCell.MouseLeave -= inputCell_MouseLeave;
+                cell.Controls.Remove(inputCell); // 입력창 제거
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
+                inputCell.MouseLeave -= inputCell_MouseLeave;
                 cell.Controls.Remove(inputCell);
+            }
+        }
+
+        // inputCell MouseEnter event handler.
+        // parent와 child의 배경색을 동시에 변경한다.
+        // parent의 event hanlder와 상호보완적으로 동작함.
+        private void inputCell_MouseEnter(object? sender, EventArgs e)
+        {
+            TextBox? inputCell = (TextBox?)sender;
+            Label cell = (Label)inputCell.Parent;
+
+            cell.BackColor = SELECTEDCOLOR;
+            inputCell.BackColor = SELECTEDCOLOR;
+        }
+
+        // inputCell MouseLeave event handler.
+        // parent와 child의 배경색을 동시에 변경한다.
+        // parent의 event handler와 상호보완적으로 동작함
+        private void inputCell_MouseLeave(object? sender, EventArgs e)
+        {
+            TextBox? inputCell = (TextBox?)sender;
+            Label cell = (Label)inputCell.Parent;
+
+            int cellNumber = (int)cell.Tag;
+
+            if (isValid[cellNumber])
+            {
+                cell.BackColor = DEFAULTCOLOR;
+                inputCell.BackColor = DEFAULTCOLOR;
+            }
+            else
+            {
+                cell.BackColor = INVALIDCOLOR;
+                inputCell.BackColor = INVALIDCOLOR;
             }
         }
 
@@ -349,6 +373,8 @@ namespace Sudoku_Play
         {
             // Start 버튼 비활성화
             BtnStart.Enabled = false;
+
+            generateGrid(9, 1);
 
             // 타이머 시작 및 정답값 랜덤 생성
             tmr.Start();
@@ -502,6 +528,93 @@ namespace Sudoku_Play
         private void 숫자생성개수변화ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // temp
+        private void generateGrid(int gridSize, int gridMode, int cellSize = 40)
+        {
+            int[,] areaGroupArray = new int[gridSize, gridSize];
+
+            if (gridMode == 0)
+            {
+                if (gridSize == 4)
+                {
+                    areaGroupArray = new int[,] {
+                    { 0, 0, 1, 1 },
+                    { 0, 0, 1, 1 },
+                    { 2, 2, 3, 3 },
+                    { 2, 2, 3, 3 }
+                    };
+                }
+                else if (gridSize == 9)
+                {
+                    areaGroupArray = new int[,] {
+                    { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
+                    { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
+                    { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
+                    { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
+                    { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
+                    { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
+                    { 6, 6, 6, 7, 7, 7, 8, 8, 8 },
+                    { 6, 6, 6, 7, 7, 7, 8, 8, 8 },
+                    { 6, 6, 6, 7, 7, 7, 8, 8, 8 }
+                    };
+                }
+            }
+            else if (gridMode == 1) // zigsaw sudoku
+            {
+                areaGroupArray = new int[,] {
+                    { 0, 0, 0, 0, 1, 2, 2, 2, 2 },
+                    { 0, 0, 1, 1, 1, 1, 1, 2, 2 },
+                    { 0, 0, 3, 1, 1, 1, 2, 2, 2 },
+                    { 3, 0, 3, 4, 4, 5, 5, 5, 5 },
+                    { 3, 3, 3, 4, 4, 4, 4, 5, 5 },
+                    { 3, 3, 3, 4, 4, 4, 5, 5, 8 },
+                    { 6, 7, 7, 7, 7, 7, 8, 5, 8 },
+                    { 6, 6, 6, 6, 6, 7, 8, 8, 8 },
+                    { 6, 6, 6, 7, 7, 7, 8, 8, 8 }
+                };
+            }
+
+            draw_grid.DrawBoard(cellSize, new Point(220, 139), areaGroupArray, gridSize, this); // need to modify
+
+            int cellWidth = cellSize - 2;
+            int cellHeight = cellSize - 2;
+            int cellTopValue = 139; // need to modify
+
+            // 숫자 비어있는 sudoku grid 생성
+            for (int i = 0; i < gridSize; i++)
+            {
+                int cellLeftValue = 220; // need to modify
+
+                for (int j = 0; j < gridSize; j++)
+                {
+                    // create cell object
+                    Label cell = new Label();
+
+                    // set cell property
+                    cell.Tag = 9 * i + j;
+                    cell.BackColor = DEFAULTCOLOR;
+                    cell.TextAlign = ContentAlignment.MiddleCenter;
+                    //cell.BorderStyle = BorderStyle.FixedSingle;
+                    cell.BorderStyle = BorderStyle.None;
+                    cell.Width = cellWidth;
+                    cell.Height = cellHeight;
+                    cell.Top = cellTopValue + 1;
+                    cell.Left = cellLeftValue + 1;
+
+                    cells.Add(cell);
+                    isValid.Add(true);
+
+                    Controls.Add(cell);
+
+                    // cell의 left value 갱신
+                    cellLeftValue += cellSize;
+                }
+
+                // cell의 top value 갱신
+                cellTopValue += cellSize;
+            }
         }
     }
 }

@@ -17,8 +17,8 @@ namespace drawing_test
         {
             Graphics g = form.CreateGraphics();
 
-            Pen slim_pen = new Pen(Color.Black, 1);
-            Pen thick_pen = new Pen(Color.Black, 3);
+            Pen slim_pen = new Pen(Color.DarkGray, 2);
+            Pen thick_pen = new Pen(Color.Black, 2);
 
             Point[,] cell_vertex = new Point[grid_size + 1, grid_size + 1];
 

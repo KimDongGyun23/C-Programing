@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             BtnCorrect = new Button();
             BtnStart = new Button();
-            sudokuGrid = new DataGridView();
             lbltmr = new Label();
             tmr = new System.Windows.Forms.Timer(components);
             BtnFinish = new Button();
@@ -52,7 +51,6 @@
             분ToolStripMenuItem1 = new ToolStripMenuItem();
             분ToolStripMenuItem2 = new ToolStripMenuItem();
             분ToolStripMenuItem3 = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)sudokuGrid).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,29 +80,13 @@
             BtnStart.UseVisualStyleBackColor = false;
             BtnStart.Click += BtnStart_Click;
             // 
-            // sudokuGrid
-            // 
-            sudokuGrid.AllowUserToAddRows = false;
-            sudokuGrid.AllowUserToDeleteRows = false;
-            sudokuGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            sudokuGrid.BackgroundColor = Color.LightGray;
-            sudokuGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            sudokuGrid.Location = new Point(220, 139);
-            sudokuGrid.Margin = new Padding(4);
-            sudokuGrid.Name = "sudokuGrid";
-            sudokuGrid.ReadOnly = true;
-            sudokuGrid.RowHeadersWidth = 51;
-            sudokuGrid.RowTemplate.Height = 29;
-            sudokuGrid.Size = new Size(390, 390);
-            sudokuGrid.TabIndex = 1;
-            // 
             // lbltmr
             // 
             lbltmr.AutoSize = true;
             lbltmr.Font = new Font("함초롬돋움", 16F, FontStyle.Bold, GraphicsUnit.Point);
             lbltmr.Location = new Point(354, 38);
             lbltmr.Name = "lbltmr";
-            lbltmr.Size = new Size(121, 35);
+            lbltmr.Size = new Size(99, 29);
             lbltmr.TabIndex = 2;
             lbltmr.Text = "00:00:00";
             // 
@@ -160,7 +142,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { 난이도조절ToolStripMenuItem, 타임어택ToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(812, 28);
+            menuStrip1.Size = new Size(812, 24);
             menuStrip1.TabIndex = 6;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -168,83 +150,83 @@
             // 
             난이도조절ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 그리드크기변경ToolStripMenuItem, 숫자생성개수변화ToolStripMenuItem });
             난이도조절ToolStripMenuItem.Name = "난이도조절ToolStripMenuItem";
-            난이도조절ToolStripMenuItem.Size = new Size(103, 24);
+            난이도조절ToolStripMenuItem.Size = new Size(83, 20);
             난이도조절ToolStripMenuItem.Text = "난이도 조절";
             // 
             // 그리드크기변경ToolStripMenuItem
             // 
             그리드크기변경ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, toolStripMenuItem3 });
             그리드크기변경ToolStripMenuItem.Name = "그리드크기변경ToolStripMenuItem";
-            그리드크기변경ToolStripMenuItem.Size = new Size(227, 26);
+            그리드크기변경ToolStripMenuItem.Size = new Size(182, 22);
             그리드크기변경ToolStripMenuItem.Text = "그리드 크기 변경";
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(124, 26);
+            toolStripMenuItem2.Size = new Size(101, 22);
             toolStripMenuItem2.Text = "4 * 4";
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(124, 26);
+            toolStripMenuItem3.Size = new Size(101, 22);
             toolStripMenuItem3.Text = "9 * 9";
             // 
             // 숫자생성개수변화ToolStripMenuItem
             // 
             숫자생성개수변화ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { eASYToolStripMenuItem, mEDIUMToolStripMenuItem, hARDToolStripMenuItem });
             숫자생성개수변화ToolStripMenuItem.Name = "숫자생성개수변화ToolStripMenuItem";
-            숫자생성개수변화ToolStripMenuItem.Size = new Size(227, 26);
+            숫자생성개수변화ToolStripMenuItem.Size = new Size(182, 22);
             숫자생성개수변화ToolStripMenuItem.Text = "숫자 출력 개수 변경";
             숫자생성개수변화ToolStripMenuItem.Click += 숫자생성개수변화ToolStripMenuItem_Click;
             // 
             // eASYToolStripMenuItem
             // 
             eASYToolStripMenuItem.Name = "eASYToolStripMenuItem";
-            eASYToolStripMenuItem.Size = new Size(154, 26);
+            eASYToolStripMenuItem.Size = new Size(122, 22);
             eASYToolStripMenuItem.Text = "EASY";
             // 
             // mEDIUMToolStripMenuItem
             // 
             mEDIUMToolStripMenuItem.Name = "mEDIUMToolStripMenuItem";
-            mEDIUMToolStripMenuItem.Size = new Size(154, 26);
+            mEDIUMToolStripMenuItem.Size = new Size(122, 22);
             mEDIUMToolStripMenuItem.Text = "MEDIUM";
             // 
             // hARDToolStripMenuItem
             // 
             hARDToolStripMenuItem.Name = "hARDToolStripMenuItem";
-            hARDToolStripMenuItem.Size = new Size(154, 26);
+            hARDToolStripMenuItem.Size = new Size(122, 22);
             hARDToolStripMenuItem.Text = "HARD";
             // 
             // 타임어택ToolStripMenuItem
             // 
             타임어택ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 분ToolStripMenuItem, 분ToolStripMenuItem1, 분ToolStripMenuItem2, 분ToolStripMenuItem3 });
             타임어택ToolStripMenuItem.Name = "타임어택ToolStripMenuItem";
-            타임어택ToolStripMenuItem.Size = new Size(83, 24);
+            타임어택ToolStripMenuItem.Size = new Size(67, 20);
             타임어택ToolStripMenuItem.Text = "타임어택";
             // 
             // 분ToolStripMenuItem
             // 
             분ToolStripMenuItem.Name = "분ToolStripMenuItem";
-            분ToolStripMenuItem.Size = new Size(123, 26);
+            분ToolStripMenuItem.Size = new Size(100, 22);
             분ToolStripMenuItem.Text = "10분";
             // 
             // 분ToolStripMenuItem1
             // 
             분ToolStripMenuItem1.Name = "분ToolStripMenuItem1";
-            분ToolStripMenuItem1.Size = new Size(123, 26);
+            분ToolStripMenuItem1.Size = new Size(100, 22);
             분ToolStripMenuItem1.Text = "7분";
             // 
             // 분ToolStripMenuItem2
             // 
             분ToolStripMenuItem2.Name = "분ToolStripMenuItem2";
-            분ToolStripMenuItem2.Size = new Size(123, 26);
+            분ToolStripMenuItem2.Size = new Size(100, 22);
             분ToolStripMenuItem2.Text = "5분";
             // 
             // 분ToolStripMenuItem3
             // 
             분ToolStripMenuItem3.Name = "분ToolStripMenuItem3";
-            분ToolStripMenuItem3.Size = new Size(123, 26);
+            분ToolStripMenuItem3.Size = new Size(100, 22);
             분ToolStripMenuItem3.Text = "3분";
             // 
             // Sudoku
@@ -257,7 +239,6 @@
             Controls.Add(BtnReset);
             Controls.Add(BtnFinish);
             Controls.Add(lbltmr);
-            Controls.Add(sudokuGrid);
             Controls.Add(BtnStart);
             Controls.Add(BtnCorrect);
             Controls.Add(menuStrip1);
@@ -266,7 +247,6 @@
             Name = "Sudoku";
             Text = "Sudoku";
             Load += Sudoku_Load;
-            ((System.ComponentModel.ISupportInitialize)sudokuGrid).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -277,7 +257,6 @@
 
         private Button BtnCorrect;
         private Button BtnStart;
-        private DataGridView sudokuGrid;
         private Label lbltmr;
         private System.Windows.Forms.Timer tmr;
         private Button BtnFinish;
