@@ -171,8 +171,8 @@ namespace Sudoku_Play
             inputCell.Left = 0;
 
             inputCell.KeyPress += InputCell_KeyPress;
-            inputCell.MouseEnter += inputCell_MouseEnter;
-            inputCell.MouseLeave += inputCell_MouseLeave;
+            inputCell.MouseEnter += InputCell_MouseEnter;
+            inputCell.MouseLeave += InputCell_MouseLeave;
 
             cell.Controls.Add(inputCell);
             inputCell.Focus();
@@ -236,7 +236,7 @@ namespace Sudoku_Play
 
             if (e.KeyChar == (char)Keys.Return)
             {
-                if (!inputCell.Text.All(char.IsLetter)) // not input any numbers
+                if (!inputCell.Text.All(char.IsLetter)) // check text has non-numbers
                 {
                     int inputValue = Int32.Parse(inputCell.Text);
 
@@ -251,12 +251,12 @@ namespace Sudoku_Play
                     }
                 }
 
-                inputCell.MouseLeave -= inputCell_MouseLeave;
+                inputCell.MouseLeave -= InputCell_MouseLeave;
                 cell.Controls.Remove(inputCell); // 입력창 제거
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
-                inputCell.MouseLeave -= inputCell_MouseLeave;
+                inputCell.MouseLeave -= InputCell_MouseLeave;
                 cell.Controls.Remove(inputCell);
             }
         }
@@ -264,7 +264,7 @@ namespace Sudoku_Play
         // inputCell MouseEnter event handler.
         // parent와 child의 배경색을 동시에 변경한다.
         // parent의 event hanlder와 상호보완적으로 동작함.
-        private void inputCell_MouseEnter(object? sender, EventArgs e)
+        private void InputCell_MouseEnter(object? sender, EventArgs e)
         {
             TextBox? inputCell = (TextBox?)sender;
             Label cell = (Label)inputCell.Parent;
@@ -276,7 +276,7 @@ namespace Sudoku_Play
         // inputCell MouseLeave event handler.
         // parent와 child의 배경색을 동시에 변경한다.
         // parent의 event handler와 상호보완적으로 동작함
-        private void inputCell_MouseLeave(object? sender, EventArgs e)
+        private void InputCell_MouseLeave(object? sender, EventArgs e)
         {
             TextBox? inputCell = (TextBox?)sender;
             Label cell = (Label)inputCell.Parent;
