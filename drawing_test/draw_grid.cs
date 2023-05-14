@@ -13,14 +13,16 @@ namespace drawing_test
 {
     public static class draw_grid
     {
-        public static void DrawBoard(int cell_edge_len, Point location, int[,] area_group_array, int grid_size, Form form)
+        public static int interval = 2;
+        public static Point[,] DrawBoard(int cell_edge_len, Point location, int[,] area_group_array, int grid_size, Form form)
         {
             Graphics g = form.CreateGraphics();
 
-            Pen slim_pen = new Pen(Color.Black, 1);
-            Pen thick_pen = new Pen(Color.Black, 3);
+            Pen slim_pen = new Pen(Color.Black, 2);
+            Pen thick_pen = new Pen(Color.Black, 4);
 
             Point[,] cell_vertex = new Point[grid_size + 1, grid_size + 1];
+            Point[,] input_box_pos = new Point[grid_size, grid_size];
 
             //cell_vertex 채우기
             for(int n = 0; n <= grid_size; n++)
@@ -28,6 +30,16 @@ namespace drawing_test
                 for(int m=0; m<= grid_size; m++)
                 {
                     cell_vertex[n, m] = new Point(location.X + m * cell_edge_len,location.Y + n * cell_edge_len);
+                }
+            }
+
+            //cell_vertex 채우기
+
+            for (int n = 0; n < grid_size; n++)
+            {
+                for (int m = 0; m < grid_size; m++)
+                {
+                    input_box_pos[n, m] = new Point(cell_vertex[n,m].X + interval, cell_vertex[n, m].Y + interval);
                 }
             }
 
@@ -89,6 +101,8 @@ namespace drawing_test
                     }
                 }
             }
+
+            return input_box_pos;
         }
     }
 }

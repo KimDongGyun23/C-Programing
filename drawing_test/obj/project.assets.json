@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\WinForm_project\\ASW_team_project\\drawing_test\\drawing_test.csproj",
+      "projectUniqueName": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\C-Programing\\drawing_test\\drawing_test.csproj",
       "projectName": "drawing_test",
-      "projectPath": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\WinForm_project\\ASW_team_project\\drawing_test\\drawing_test.csproj",
+      "projectPath": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\C-Programing\\drawing_test\\drawing_test.csproj",
       "packagesPath": "C:\\Users\\qqdld\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\WinForm_project\\ASW_team_project\\drawing_test\\obj\\",
+      "outputPath": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\C-Programing\\drawing_test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\qqdld\\AppData\\Roaming\\NuGet\\NuGet.Config",
