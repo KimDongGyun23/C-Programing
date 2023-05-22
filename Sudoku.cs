@@ -34,14 +34,9 @@ namespace Sudoku_Play
         bool timeAttack = false;    // 타임어택 여부 변수
         string tmrText = "";        // 타임어택 시간을 라벨에 넘기기 위한 변수
 
-
-
         int mode = 0;
         int cell_edge_len = 40;
         Point point = new Point(220, 139);
-
-
-
 
         Color DEFAULTCOLOR = Color.White;
         Color SELECTEDCOLOR = Color.LightCyan;
@@ -499,20 +494,33 @@ namespace Sudoku_Play
 
         private void RegularMode99_Click(object sender, EventArgs e)
         {
+            foreach (Label cell in cells)
+                Controls.Remove(cell);
+
+            Invalidate();
+            cells = new List<Label>();
             ClearCells();
             mode = 0;
             point.X = 220;
             point.Y = 139;
             int MAXINPUTVALUE = 9;
-
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            ClearCells();
+            // 셀을 지움
+            foreach (Label cell in cells)
+                Controls.Remove(cell);
+
+            // 그리드 그래픽 지움
+            Invalidate();
+
+            // 셀 초기화
+            cells = new List<Label>();
             mode = 1;
-            point.X = 220;
-            point.Y = 139;
+            point.X = 325;
+            point.Y = 180;
+
             int MAXINPUTVALUE = 4;
         }
     }
