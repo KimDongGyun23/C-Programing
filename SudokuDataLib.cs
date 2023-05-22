@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace SudokuDataLib
+﻿namespace SudokuDataLib
 {
     public enum GroupType
     {
@@ -452,7 +450,7 @@ namespace SudokuDataLib
 
         public override bool[,] IsFixed
         {
-            get { return fixed_cells; }
+            get { return fixed_cells;}
         }
 
         public override int BlockSize
@@ -469,7 +467,7 @@ namespace SudokuDataLib
         {
             get { return area_group_grid; }
         }
-
+        
 
         //가장 최근에 입력한 셀의 위치와 이전 값을 반환하는 메소드
         public override bool CanUndo()
@@ -525,7 +523,7 @@ namespace SudokuDataLib
         public override List<Tuple<int, int>> FindWrongCells()
         {
             List<Tuple<int, int>> return_obj = new List<Tuple<int, int>>();
-            for (int i = 0; i < grid_size; i++)
+            for(int i = 0; i < grid_size; i++)
             {
                 return_obj.AddRange(FindWrongCells(GroupType.Row, i));
             }
@@ -548,7 +546,7 @@ namespace SudokuDataLib
             return true;
         }
 
-
+       
 
         //중복값을 가진 셀의 위치를 리스트로 반환하는 메소드
         public List<Tuple<int, int>> FindWrongCells(GroupType group_type, int group_num)
@@ -600,7 +598,7 @@ namespace SudokuDataLib
         //홀수면 true 저장
         bool[,] odd_grid;
 
-        public OddEvenSudokuGameBoard(int fixed_cnt, int block_size) : base(fixed_cnt, block_size)
+        public OddEvenSudokuGameBoard(int fixed_cnt, int block_size) :base(fixed_cnt, block_size)
         {
             odd_grid = new bool[base.GridSize, base.GridSize];
         }
@@ -609,12 +607,12 @@ namespace SudokuDataLib
         {
             base.ResetSudoku();
 
-            for (int i = 0; i < base.GridSize; i++)
+            for(int i=0; i<base.GridSize; i++)
             {
-                for (int j = 0; j < base.GridSize; j++)
+                for(int j=0; j<base.GridSize; j++)
                 {
-                    if (base[i, j] % 2 == 1)
-                        odd_grid[i, j] = true;
+                    if (base[i,j] % 2==1)
+                        odd_grid[i,j] = true;
                 }
             }
         }
@@ -649,7 +647,7 @@ namespace SudokuDataLib
 
             //격자 객체 생성
             grid = new SquareGrid[grid_cnt];
-            for (int i = 0; i < grid_cnt; i++)
+            for(int i = 0; i < grid_cnt; i++)
             {
                 grid[i] = new SquareGrid();
             }
@@ -676,22 +674,22 @@ namespace SudokuDataLib
                     int row = coordinate[0].Item1;
                     int col = coordinate[0].Item2;
                     int grid_num = coordinate[0].Item3;
-
+                    
                     return grid[coordinate[0].Item3][row, col];
                 }
                 else
                 {
                     Environment.FailFast("격자에 벗어난 공간에 접근했습니다.");
                     return 0;
-                }
+                }                     
             }
             set
-            {
+            {               
                 if (fixed_cells[n, m])
                     return;
                 else
                 {
-                    SetValue(n, m, value);
+                    SetValue(n, m, value);                   
                 }
 
                 input_log.Push(new Tuple<int, int, int>(n, m, value));
@@ -736,7 +734,7 @@ namespace SudokuDataLib
             Tuple<int, int, int> undo_pos = input_log.Pop();
             int undo_value = grid_change_log.Pop()[undo_pos.Item1, undo_pos.Item2];
 
-            SetValue(undo_pos.Item1, undo_pos.Item2, undo_value);
+            SetValue(undo_pos.Item1, undo_pos.Item2,  undo_value);
 
             return new Tuple<int, int, int>(undo_pos.Item1, undo_pos.Item2, undo_value);
         }
@@ -831,7 +829,7 @@ namespace SudokuDataLib
             var coordinates = ConvertCoordinate(n, m);
             foreach (var coordinate in coordinates)
             {
-                if (!grid[coordinate.Item3].IsValidGroup(GroupType.Row, coordinate.Item1))
+                if(!grid[coordinate.Item3].IsValidGroup(GroupType.Row, coordinate.Item1))
                     return false;
                 if (!grid[coordinate.Item3].IsValidGroup(GroupType.Colum, coordinate.Item2))
                     return false;
@@ -848,11 +846,11 @@ namespace SudokuDataLib
             List<Tuple<int, int, int>> return_obj = new List<Tuple<int, int, int>>();
             Tuple<int, int>[] coordinate = new Tuple<int, int>[5];
             coordinate[0] = new Tuple<int, int>(n, m);
-            coordinate[1] = new Tuple<int, int>(n - 12, m);
-            coordinate[2] = new Tuple<int, int>(n, m - 12);
+            coordinate[1] = new Tuple<int, int>(n-12, m);
+            coordinate[2] = new Tuple<int, int>(n, m-12);
             coordinate[3] = new Tuple<int, int>(n - 12, m - 12);
             coordinate[4] = new Tuple<int, int>(n - 6, m - 6);
-            for (int i = 0; i < grid_cnt; i++)
+            for(int i=0;i<grid_cnt;i++)
             {
                 if (coordinate[i].Item1 >= 0 && coordinate[i].Item2 >= 0 && coordinate[i].Item1 < 9 && coordinate[i].Item2 < 9)
                 {
@@ -898,9 +896,9 @@ namespace SudokuDataLib
         private int[,] GetGridValue()
         {
             int[,] return_obj = new int[grid_size, grid_size];
-            for (int i = 0; i < grid_size; i++)
+            for(int i = 0; i < grid_size; i++)
             {
-                for (int j = 0; j < grid_size; j++)
+                for(int j=0; j < grid_size; j++)
                 {
                     return_obj[i, j] = entire_grid[i, j];
                 }
@@ -922,7 +920,7 @@ namespace SudokuDataLib
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
-                    SetValue(i, j, InitGird[i, j]);
+                    SetValue(i, j, InitGird[i, j]);               
             }
         }
 
@@ -1122,7 +1120,7 @@ namespace SudokuDataLib
         {
             return fixed_cells[n, m];
         }
-
+        
         //메소드 구현을 위한 private 메소드
 
         private void FillGirdValue(int[,] InitGird)
@@ -1245,7 +1243,7 @@ namespace SudokuDataLib
                 var pos = (x, y);
 
                 // 중복된 좌표가 생성되지 않도록 확인
-                if (!pos_set.Contains(pos) && answerArray[x, y] != 0)
+                if (!pos_set.Contains(pos) && answerArray[x,y]!=0)
                 {
                     pos_set.Add(pos);
                 }
@@ -1268,24 +1266,22 @@ namespace SudokuDataLib
         public static int[,] GenerateRegularSudokuGrid(int block_size)
         {
             int grid_size = block_size * block_size;
-
-            int[,] answerArray5 = {
-                { 1, 2, 3, 4 },
-                { 3, 4, 1, 2 },
-                { 2, 1, 4, 3 },
-                { 4, 3, 2, 1 }
+            int[,] answerArray2 = {
+                {2, 1, 4, 3},
+                {3, 4, 1, 2},
+                {4, 2, 3, 1},
+                {1, 3, 2, 4}
             };
-
             int[,] answerArray3 = {
-                    { 8, 3, 9, 6, 5, 7, 2, 1, 4},
-                    { 6, 7, 2, 9, 4, 1, 5, 8, 3},
-                    { 1, 5, 4, 8, 3, 2, 9, 6, 7},
-                    { 5, 4, 1, 2, 8, 3, 7, 9, 6},
-                    { 2, 8, 7, 4, 9, 6, 3, 5, 1},
-                    { 9, 6, 3, 7, 1, 5, 4, 2, 8},
-                    { 7, 1, 8, 3, 2, 9, 6, 4, 5},
-                    { 3, 2, 5, 1, 6, 4, 8, 7, 9},
-                    { 4, 9, 6, 5, 7, 8, 1, 3, 2}
+                { 8, 3, 9, 6, 5, 7, 2, 1, 4},
+                { 6, 7, 2, 9, 4, 1, 5, 8, 3},
+                { 1, 5, 4, 8, 3, 2, 9, 6, 7},
+                { 5, 4, 1, 2, 8, 3, 7, 9, 6},
+                { 2, 8, 7, 4, 9, 6, 3, 5, 1},
+                { 9, 6, 3, 7, 1, 5, 4, 2, 8},
+                { 7, 1, 8, 3, 2, 9, 6, 4, 5},
+                { 3, 2, 5, 1, 6, 4, 8, 7, 9},
+                { 4, 9, 6, 5, 7, 8, 1, 3, 2}
             };
             int[,] answerArray4 = {
                 {9, 1, 6, 10, 7, 4, 2, 14, 3, 11, 5, 12, 15, 16, 8, 13},
@@ -1306,25 +1302,25 @@ namespace SudokuDataLib
                 {2, 8, 15, 3, 5, 11, 9, 1, 12, 13, 16, 4, 14, 10, 6, 7}
             };
 
-            int[,] answerArray = new int[grid_size, grid_size];
+            int[,] answerArray=new int[grid_size,grid_size];
 
-            if (block_size == 3)
+            if (block_size == 2)
+            {
+                answerArray = answerArray2;
+            }
+            else if (block_size == 3)
             {
                 answerArray = answerArray3;
             }
-            else if (block_size == 4)
+            else if(block_size == 4)
             {
                 answerArray = answerArray4;
-            }
-            else if (block_size == 2)
-            {
-                answerArray = answerArray5;
             }
 
             var suffle_row = () =>
             {
                 Random randObj = new Random();
-                int groupNum = randObj.Next(0, block_size) * block_size;
+                int groupNum = randObj.Next(0,block_size)*block_size;
                 int randNum1 = 0;
                 int randNum2 = 0;
 
@@ -1347,17 +1343,17 @@ namespace SudokuDataLib
 
                 rand();
                 for (int j = 0; j < grid_size; j++)
-                {
+                {                  
                     for (int k = 0; k < block_size; k++)
                     {
-                        int temp = answerArray[j, randNum1 * block_size + k];
+                        int temp = answerArray[j, randNum1*block_size+k];
                         answerArray[j, randNum1 * block_size + k] = answerArray[j, randNum2 * block_size + k];
                         answerArray[j, randNum2 * block_size + k] = temp;
                     }
                 }
             };
 
-            var suffle_col = () =>
+            var suffle_col = ( ) =>
             {
                 Random randObj = new Random();
                 int groupNum = randObj.Next(0, block_size) * block_size;
@@ -1386,8 +1382,8 @@ namespace SudokuDataLib
                 {
                     for (int k = 0; k < block_size; k++)
                     {
-                        int temp = answerArray[randNum1 * block_size + k, j];
-                        answerArray[randNum1 * block_size + k, j] = answerArray[randNum2 * block_size + k, j];
+                        int temp = answerArray[randNum1 * block_size + k,j];
+                        answerArray[randNum1 * block_size + k,j] = answerArray[randNum2 * block_size + k, j];
                         answerArray[randNum2 * block_size + k, j] = temp;
                     }
                 }
@@ -1398,7 +1394,7 @@ namespace SudokuDataLib
                 suffle_row();
                 suffle_col();
             }
-
+            
             return answerArray;
         }
 
@@ -1455,7 +1451,7 @@ namespace SudokuDataLib
                         // 그룹 별로 열을 바꿈
                         // groupNum = 0 인 열들을 groupNum = 3인 열들과 교환
                         // groupNum = 3 인 열들을 groupNum = 6인 열들과 교환
-                        if (groupNum == 0 || groupNum == 15)
+                        if (groupNum == 0 || groupNum ==  15)
                         {
                             answerArray[j, groupNum] = answerArray[j, groupNum + 4];
                             answerArray[j, groupNum + 1] = answerArray[j, groupNum + 5];
@@ -1570,5 +1566,5 @@ namespace SudokuDataLib
             return area_grid;
         }
     }
-
+   
 }

@@ -27,7 +27,7 @@ namespace drawing_test
             int right_extend_thick_pen = interval;
             int left_extend_thick_pen = interval-1;
 
-            input_edge_len = cell_edge_len - 2 * interval;
+            input_edge_len = cell_edge_len - 2 * interval+1;
 
             Point[,] cell_vertex = new Point[grid_size + 1, grid_size + 1];
             Point[,] input_box_pos = new Point[grid_size, grid_size];

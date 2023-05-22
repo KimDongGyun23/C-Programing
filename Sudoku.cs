@@ -19,21 +19,20 @@ namespace Sudoku_Play
 
 
         GameBoard GameBoard;
-        //GameBoard GameBoard = new RegularSudokuGameBoard(30,3); // sudoku GameBoard
 
-        List<Label> cells = new List<Label>(); // form¿¡ Ç¥½ÃµÇ´Â cell Á¦¾î
-        List<bool> isValid = new List<bool>(); // cell À¯È¿¼º ÀúÀå
+        List<Label> cells = new List<Label>(); // formì— í‘œì‹œë˜ëŠ” cell ì œì–´
+        List<bool> isValid = new List<bool>(); // cell ìœ íš¨ì„± ì €ì¥
         int[,] answerArray;
 
         int MAXINPUTVALUE = 9;
         int MININPUTVALUE = 1;
 
-        int nCount = 0;             // Å¸ÀÌ¸Ó ½Ã°£º¯¼ö
-        int colorChange = 0;        // msg Å¸ÀÌ¸Ó ½Ã°£º¯¼ö
+        int nCount = 0;             // íƒ€ì´ë¨¸ ì‹œê°„ë³€ìˆ˜
+        int colorChange = 0;        // msg íƒ€ì´ë¨¸ ì‹œê°„ë³€ìˆ˜
 
-        int nAttCount = 0;          // Å¸ÀÓ¾îÅÃ ¸ğµå ½Ã°£º¯¼ö
-        bool timeAttack = false;    // Å¸ÀÓ¾îÅÃ ¿©ºÎ º¯¼ö
-        string tmrText = "";        // Å¸ÀÓ¾îÅÃ ½Ã°£À» ¶óº§¿¡ ³Ñ±â±â À§ÇÑ º¯¼ö
+        int nAttCount = 0;          // íƒ€ì„ì–´íƒ ëª¨ë“œ ì‹œê°„ë³€ìˆ˜
+        bool timeAttack = false;    // íƒ€ì„ì–´íƒ ì—¬ë¶€ ë³€ìˆ˜
+        string tmrText = "";        // íƒ€ì„ì–´íƒ ì‹œê°„ì„ ë¼ë²¨ì— ë„˜ê¸°ê¸° ìœ„í•œ ë³€ìˆ˜
 
 
 
@@ -51,17 +50,20 @@ namespace Sudoku_Play
         public Sudoku()
         {
             InitializeComponent();
+
+            //ê¸°ë³¸ì ì¸ GameBoard ì´ˆê¸°í™”ê°€ ì—†ì–´ì„œ ì¶”ê°€í•©ë‹ˆë‹¤.
+            GameBoard = new RegularSudokuGameBoard(20,3);
         }
 
-        // form ½ÇÇà ½Ã µ¿ÀÛ. ÇöÀç´Â 9 * 9 ±âÁØÀ¸·Î ÀÛ¼ºµÇ¾î ÀÖÀ½.
-        // ÃßÈÄ¿¡ ´Ù¸¥ ÇüÅÂµµ ±¸ÇöÇÒ ½Ã ÇüÅÂ º°·Î µû·Î ±¸ÇöÇÒ ¿¹Á¤.
+        // form ì‹¤í–‰ ì‹œ ë™ì‘. í˜„ì¬ëŠ” 9 * 9 ê¸°ì¤€ìœ¼ë¡œ ì‘ì„±ë˜ì–´ ìˆìŒ.
+        // ì¶”í›„ì— ë‹¤ë¥¸ í˜•íƒœë„ êµ¬í˜„í•  ì‹œ í˜•íƒœ ë³„ë¡œ ë”°ë¡œ êµ¬í˜„í•  ì˜ˆì •.
         private void Sudoku_Load(object sender, EventArgs e)
         {
         }
 
 
-        // cellÀ» ´õºíÅ¬¸¯ ½Ã ÀÔ·ÂÃ¢ÀÌ ³ª¿Í °ªÀ» ¼öÁ¤ÇÒ ¼ö ÀÖÀ½.
-        // ÀÔ·ÂÃ¢Àº enter¿Í esc¿¡ ¹İÀÀÇÔ.
+        // cellì„ ë”ë¸”í´ë¦­ ì‹œ ì…ë ¥ì°½ì´ ë‚˜ì™€ ê°’ì„ ìˆ˜ì •í•  ìˆ˜ ìˆìŒ.
+        // ì…ë ¥ì°½ì€ enterì™€ escì— ë°˜ì‘í•¨.
         private void Cell_DoubleClick(object? sender, EventArgs e)
         {
             Label? cell = (Label?)sender;
@@ -82,7 +84,7 @@ namespace Sudoku_Play
             cell.Controls.Add(inputCell);
             inputCell.Focus();
 
-            /// ´õºíÅ¬¸¯ ÈÄ, ÇØ´ç ¼¿¿¡ ÅØ½ºÆ®°¡ ºñ¾îÀÖÀ¸¸é GameBoard °ªÀ» 0À¸·Î ¸¸µé±â
+            /// ë”ë¸”í´ë¦­ í›„, í•´ë‹¹ ì…€ì— í…ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆìœ¼ë©´ GameBoard ê°’ì„ 0ìœ¼ë¡œ ë§Œë“¤ê¸°
         }
 
         private void Cell_Enter(object? sender, EventArgs e)
@@ -99,8 +101,8 @@ namespace Sudoku_Play
             }
         }
 
-        // ¸¶¿ì½º Ä¿¼­°¡ cellÀ» ¹ş¾î³¯ ½Ã cellÀÇ »öÀÌ µ¹¾Æ¿È.
-        // µ¹¾Æ¿À´Â »öÀº cellÀÇ À¯È¿¼ºÀ» ±âÁØÀ¸·Î ÆÇ´ÜÇÔ.
+        // ë§ˆìš°ìŠ¤ ì»¤ì„œê°€ cellì„ ë²—ì–´ë‚  ì‹œ cellì˜ ìƒ‰ì´ ëŒì•„ì˜´.
+        // ëŒì•„ì˜¤ëŠ” ìƒ‰ì€ cellì˜ ìœ íš¨ì„±ì„ ê¸°ì¤€ìœ¼ë¡œ íŒë‹¨í•¨.
         private void Cell_Leave(object? sender, EventArgs e)
         {
             Label? cell = (Label?)sender;
@@ -131,9 +133,9 @@ namespace Sudoku_Play
             }
         }
 
-        // cell ´õºíÅ¬¸¯ ½Ã ³ª¿À´Â ÀÔ·ÂÃ¢ Á¦¾î¿¡ »ç¿ëµÇ´Â ÀÌº¥Æ®.
-        // enter: 1 ~ 9 »çÀÌÀÇ °ªÀÌ ÀÔ·ÂµÇ¾úÀ» °æ¿ì ÇØ´çÇÏ´Â cellÀÇ °ªÀ» º¯°æÇÔ. (9 * 9 ±âÁØ)
-        // esc: ÀÔ·Â°ª¿¡ »ó°ü¾øÀÌ Ã¢À» ´İÀ½.
+        // cell ë”ë¸”í´ë¦­ ì‹œ ë‚˜ì˜¤ëŠ” ì…ë ¥ì°½ ì œì–´ì— ì‚¬ìš©ë˜ëŠ” ì´ë²¤íŠ¸.
+        // enter: 1 ~ 9 ì‚¬ì´ì˜ ê°’ì´ ì…ë ¥ë˜ì—ˆì„ ê²½ìš° í•´ë‹¹í•˜ëŠ” cellì˜ ê°’ì„ ë³€ê²½í•¨. (9 * 9 ê¸°ì¤€)
+        // esc: ì…ë ¥ê°’ì— ìƒê´€ì—†ì´ ì°½ì„ ë‹«ìŒ.
         private void InputCell_KeyPress(object? sender, KeyPressEventArgs e)
         {
             TextBox? inputCell = (TextBox?)sender;
@@ -146,8 +148,8 @@ namespace Sudoku_Play
                     int inputValue = Int32.Parse(inputCell.Text);
 
                     int cellNumber = (int)cell.Tag; // cellNumber = 9 * cellX + cellY
-                    int cellX = cellNumber / GameBoard.GridSize;
-                    int cellY = cellNumber % GameBoard.GridSize;
+                    int cellX = cellNumber / 9;
+                    int cellY = cellNumber % 9;
 
                     if (inputValue >= MININPUTVALUE && inputValue <= MAXINPUTVALUE)
                     {
@@ -162,7 +164,7 @@ namespace Sudoku_Play
                 }
 
                 inputCell.MouseLeave -= InputCell_MouseLeave;
-                cell.Controls.Remove(inputCell); // ÀÔ·ÂÃ¢ Á¦°Å
+                cell.Controls.Remove(inputCell); // ì…ë ¥ì°½ ì œê±°
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
@@ -172,8 +174,8 @@ namespace Sudoku_Play
         }
 
         // inputCell MouseEnter event handler.
-        // parent¿Í childÀÇ ¹è°æ»öÀ» µ¿½Ã¿¡ º¯°æÇÑ´Ù.
-        // parentÀÇ event hanlder¿Í »óÈ£º¸¿ÏÀûÀ¸·Î µ¿ÀÛÇÔ.
+        // parentì™€ childì˜ ë°°ê²½ìƒ‰ì„ ë™ì‹œì— ë³€ê²½í•œë‹¤.
+        // parentì˜ event hanlderì™€ ìƒí˜¸ë³´ì™„ì ìœ¼ë¡œ ë™ì‘í•¨.
         private void InputCell_MouseEnter(object? sender, EventArgs e)
         {
             TextBox? inputCell = (TextBox?)sender;
@@ -184,8 +186,8 @@ namespace Sudoku_Play
         }
 
         // inputCell MouseLeave event handler.
-        // parent¿Í childÀÇ ¹è°æ»öÀ» µ¿½Ã¿¡ º¯°æÇÑ´Ù.
-        // parentÀÇ event handler¿Í »óÈ£º¸¿ÏÀûÀ¸·Î µ¿ÀÛÇÔ
+        // parentì™€ childì˜ ë°°ê²½ìƒ‰ì„ ë™ì‹œì— ë³€ê²½í•œë‹¤.
+        // parentì˜ event handlerì™€ ìƒí˜¸ë³´ì™„ì ìœ¼ë¡œ ë™ì‘í•¨
         private void InputCell_MouseLeave(object? sender, EventArgs e)
         {
             TextBox? inputCell = (TextBox?)sender;
@@ -205,7 +207,7 @@ namespace Sudoku_Play
             }
         }
 
-        // cell¿¡ ¼³Á¤µÇ¾î ÀÖ´Â property ÃÊ±âÈ­
+        // cellì— ì„¤ì •ë˜ì–´ ìˆëŠ” property ì´ˆê¸°í™”
         private void ClearCells()
         {
             foreach (Label cell in cells)
@@ -222,12 +224,12 @@ namespace Sudoku_Play
 
             for (int i = 0; i < isValid.Count; i++)
             {
-                // cellÀÇ À¯È¿¼º ÃÊ±âÈ­
+                // cellì˜ ìœ íš¨ì„± ì´ˆê¸°í™”
                 isValid[i] = true;
             }
         }
 
-        // Å¸ÀÌ¸Ó µ¿ÀÛ
+        // íƒ€ì´ë¨¸ ë™ì‘
         private void tmr_Tick(object sender, EventArgs e)
         {
             if (timeAttack)
@@ -252,80 +254,75 @@ namespace Sudoku_Play
             }
             lbltmr.Text = hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");
 
-            // Å¸ÀÓ¾îÅÃ ½Ã°£ Á¾·á ½Ã, Å¸ÀÌ¸Ó Á¤Áö ¹× ¶óº§ ÃÊ±âÈ­
+            // íƒ€ì„ì–´íƒ ì‹œê°„ ì¢…ë£Œ ì‹œ, íƒ€ì´ë¨¸ ì •ì§€ ë° ë¼ë²¨ ì´ˆê¸°í™”
             if (nCount < 0)
             {
                 lbltmr.Text = "00:00:00";
                 tmr.Stop();
-                lblText.Text = "°ÔÀÓÀ» Å¬¸®¾î ÇÏÁö ¸øÇß½À´Ï´Ù.";
+                lblText.Text = "ê²Œì„ì„ í´ë¦¬ì–´ í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.";
             }
         }
-     
+
         private void msgTmr_Tick(object sender, EventArgs e)
         {
             ++colorChange;
 
             if (colorChange == 2)
             {
-                // ¸ğµç ¼¿ ´Ù½Ã ±âº» »ö»óÀ¸·Î º¯°æ
+                // ëª¨ë“  ì…€ ë‹¤ì‹œ ê¸°ë³¸ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½
                 foreach (Label cell in cells)
                 {
                     cell.BackColor = DEFAULTCOLOR;
                 }
 
-                // label ¹®±¸ ´Ù½Ã ÃÊ±âÈ­
+                // label ë¬¸êµ¬ ë‹¤ì‹œ ì´ˆê¸°í™”
                 msgTmr.Stop();
                 colorChange = 0;
-                lblText.Text = "³¡±îÁö µµÀüÇØº¸¼¼¿ä.";
+                lblText.Text = "ëê¹Œì§€ ë„ì „í•´ë³´ì„¸ìš”.";
                 BtnCorrect.Enabled = true;
 
                 isValid.Clear();
 
-                for(int i = 0; i < cells.Count; i++)
+                for (int i = 0; i < cells.Count; i++)
                     isValid.Add(true);
             }
         }
 
 
-        /// START ¹öÆ° ±¸Çö
-        /// »ı¼ºµÈ sudoku GameBoard¸¦ form¿¡ Ç¥½Ã
+        /// START ë²„íŠ¼ êµ¬í˜„
+        /// ìƒì„±ëœ sudoku GameBoardë¥¼ formì— í‘œì‹œ
         private void BtnStart_Click(object sender, EventArgs e)
         {
             //cells = new List<Label>();
 
-            // Start ¹öÆ° ºñÈ°¼ºÈ­
+            // Start ë²„íŠ¼ ë¹„í™œì„±í™”
             BtnStart.Enabled = false;
 
-            // Å¸ÀÌ¸Ó ½ÃÀÛ ¹× Á¤´ä°ª ·£´ı »ı¼º
+            // íƒ€ì´ë¨¸ ì‹œì‘ ë° ì •ë‹µê°’ ëœë¤ ìƒì„±
             tmr.Start();
-            lblText.Text = lblText.Text = "³¡±îÁö µµÀüÇØº¸¼¼¿ä.";
+            lblText.Text = lblText.Text = "ëê¹Œì§€ ë„ì „í•´ë³´ì„¸ìš”.";
 
 
             if (mode == 0)
             {
                 GameBoard = new RegularSudokuGameBoard(20, 3);
-                for (int i = 0; i < GameBoard.GridSize; i++)
-                    for (int j = 0; j < GameBoard.GridSize; j++)
-                        answerArray = GridGenerator.GenerateRegularSudokuGrid(3);
             }
             else if (mode == 1)
             {
                 GameBoard = new RegularSudokuGameBoard(3, 2);
-                for (int i = 0; i < GameBoard.GridSize; i++)
-                    for (int j = 0; j < GameBoard.GridSize; j++)
-                        answerArray = GridGenerator.GenerateRegularSudokuGrid(2);
             }
+
+            //ìƒˆ ìŠ¤ë„ì¿ ë¥¼ ìƒì„±í•˜ëŠ” ë²„íŠ¼
+            GameBoard.ResetSudoku();
 
             Point[,] inputBoxPositions = draw_grid.DrawBoard(cell_edge_len, point, GameBoard.AreaGroup, GameBoard.GridSize, this);
 
-            
-
             int cellSize = draw_grid.input_edge_len;
-            int cellWidth = cellSize - 2;
-            int cellHeight = cellSize - 2;
+            int cellWidth = cellSize;
+            int cellHeight = cellSize;
             int cellTopValue = point.Y;
 
-            // ¼ıÀÚ ºñ¾îÀÖ´Â sudoku grid »ı¼º
+            // ìˆ«ì ë¹„ì–´ìˆëŠ” sudoku grid ìƒì„±
             for (int i = 0; i < GameBoard.GridSize; i++)
             {
                 int cellLeftValue = point.X;
@@ -339,19 +336,21 @@ namespace Sudoku_Play
                     cell.BackColor = DEFAULTCOLOR;
                     cell.TextAlign = ContentAlignment.MiddleCenter;
                     cell.BorderStyle = BorderStyle.None;
-                    cell.Width = cellWidth +2;
-                    cell.Height = cellHeight +2;
-                    cell.Top = inputBoxPositions[i,j].Y;
-                    cell.Left = inputBoxPositions[i,j].X;
+                    cell.Width = cellWidth;
+                    cell.Height = cellHeight;
+                    //cellìœ„ì¹˜ëŠ” ê·¸ëƒ¥ Locationìœ¼ë¡œ ì„¤ì •í•˜ë©´ ë©ë‹ˆë‹¤.
+                    //cell.Top = inputBoxPositions[i, j].Y;
+                    //cell.Left = inputBoxPositions[i, j].X;
+                    cell.Location = inputBoxPositions[i, j];
 
                     cells.Add(cell);
                     isValid.Add(true);
                     Controls.Add(cell);
 
-                    // cellÀÇ left value °»½Å
+                    // cellì˜ left value ê°±ì‹ 
                     cellLeftValue += cellSize;
                 }
-                // cellÀÇ top value °»½Å
+                // cellì˜ top value ê°±ì‹ 
                 cellTopValue += cellSize;
             }
 
@@ -359,18 +358,10 @@ namespace Sudoku_Play
             {
                 for (int j = 0; j < GameBoard.GridSize; j++)
                 {
-                    GameBoard[i, j] = answerArray[i, j];
+                    //ì´ë¯¸ í´ë˜ìŠ¤ ë‚´ë¶€ì—ì„œ ëœë¤ìœ¼ë¡œ ë¹ˆì¹¸ì„ ë§Œë“¤ê¸° ë•Œë¬¸ì— ëœë¤ê´€ë ¨ ë¶€ë¶„ì€ ì‚­ì œí–ˆìŠµë‹ˆë‹¤.
                     Label cell = cells[GameBoard.GridSize * i + j];
-                    
-                    Random randObj1 = new Random();
-                    
-                    // set cell value
-                    // ÀÚ½ÅÀÇ °ªº¸´Ù +- 1¸¸Å­ÀÇ ³­¼ö¸¦ »ı¼ºÇÏ¿© ÇØ´ç ³­¼ö¿Í µ¿ÀÏÇÑ °ªÀÏ °æ¿ì ¸¶½ºÅ·Ã³¸®
-                    // ·£´ı°ª°ú ÇØ´ç Ä­ÀÇ ¼ıÀÚ°¡ µ¿ÀÏÇÏÁö ¾ÊÀº °æ¿ì¿¡¸¸ °ªÀ» Ãâ·Â
-                    // ³­¼öÀÇ ¹üÀ§¸¦ ÁöÁ¤ÇÑ´Ù¸é ³­ÀÌµµ Á¶Àı °¡´ÉÇÒ °ÍÀ¸·Î ¿¹»óµÊ                    
-                    
-                    //if(GameBoard.IsFixed[i,j])
-                    if (GameBoard[i, j] == randObj1.Next(GameBoard[i, j] - 1, GameBoard[i, j] + 1))
+
+                    if (!GameBoard.IsFixed[i, j])
                     {
                         GameBoard[i, j] = 0;
                         cell.Text = "";
@@ -388,14 +379,14 @@ namespace Sudoku_Play
             }
         }
 
-        // Correct ¹öÆ° ±¸Çö
+        // Correct ë²„íŠ¼ êµ¬í˜„
         private void BtnCorrect_Click(object sender, EventArgs e)
         {
             if (!GameBoard.IsValidAll())
             {
-                lblText.Text = "Æ²¸° ºÎºĞÀÌ ÀÖ±º¿ä. ´Ù½Ã »ı°¢ÇØº¸¼¼¿ä.";
-                
-                // À¯È¿¼º °Ë»ç
+                lblText.Text = "í‹€ë¦° ë¶€ë¶„ì´ ìˆêµ°ìš”. ë‹¤ì‹œ ìƒê°í•´ë³´ì„¸ìš”.";
+
+                // ìœ íš¨ì„± ê²€ì‚¬
                 if (!GameBoard.IsValidAll())
                 {
                     foreach (Tuple<int, int> tuple in GameBoard.FindWrongCells())
@@ -407,44 +398,44 @@ namespace Sudoku_Play
             }
             else
             {
-                lblText.Text = "¿Ã¹Ù¸£°Ô ÀÔ·ÂµÇ¾ú½À´Ï´Ù.";
+                lblText.Text = "ì˜¬ë°”ë¥´ê²Œ ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.";
             }
-            
-            // 2ÃÊ µÚ ¿ø·¡ÀÇ »öÀ¸·Î µ¹¾Æ¿Àµµ·Ï ¼³Á¤
-            // Correct ¹öÆ° ¿¬¼Ó ÀÔ·Â ¹æÁöÇÏ±â À§ÇØ ºñÈ°¼ºÈ­
+
+            // 2ì´ˆ ë’¤ ì›ë˜ì˜ ìƒ‰ìœ¼ë¡œ ëŒì•„ì˜¤ë„ë¡ ì„¤ì •
+            // Correct ë²„íŠ¼ ì—°ì† ì…ë ¥ ë°©ì§€í•˜ê¸° ìœ„í•´ ë¹„í™œì„±í™”
             msgTmr.Start();
             BtnCorrect.Enabled = false;
         }
 
-        /// Finish ¹öÆ° ±¸Çö
-        /// ¼¿¿¡ ¸ğµç °ªµéÀÌ ÀÔ·ÂµÇ¾ú°í ±ÔÄ¢¿¡ À§¹èµÇÁö¾ÊÀ¸¸é ¼º°ø ¹®±¸ Ãâ·Â
-        /// ¼º°ø ½Ã, Å¸ÀÌ¸Ó Á¤Áö
+        /// Finish ë²„íŠ¼ êµ¬í˜„
+        /// ì…€ì— ëª¨ë“  ê°’ë“¤ì´ ì…ë ¥ë˜ì—ˆê³  ê·œì¹™ì— ìœ„ë°°ë˜ì§€ì•Šìœ¼ë©´ ì„±ê³µ ë¬¸êµ¬ ì¶œë ¥
+        /// ì„±ê³µ ì‹œ, íƒ€ì´ë¨¸ ì •ì§€
         private void BtnFinish_Click(object sender, EventArgs e)
         {
             if (GameBoard.IsValidSudoku())
             {
-                lblText.Text = "ÃàÇÏÇÕ´Ï´Ù. °ÔÀÓÀ» Å¬¸®¾î Çß½À´Ï´Ù.";
+                lblText.Text = "ì¶•í•˜í•©ë‹ˆë‹¤. ê²Œì„ì„ í´ë¦¬ì–´ í–ˆìŠµë‹ˆë‹¤.";
                 tmr.Stop();
             }
             else
             {
-                lblText.Text = "Æ²¸° °÷ÀÌ ÀÖ±º¿ä! ´Ù½Ã ¼öÁ¤ÇØº¸¼¼¿ä.";
+                lblText.Text = "í‹€ë¦° ê³³ì´ ìˆêµ°ìš”! ë‹¤ì‹œ ìˆ˜ì •í•´ë³´ì„¸ìš”.";
                 msgTmr.Start();
             }
         }
 
-        /// Reset ¹öÆ° ±¸Çö
-        /// ¼¿ÀÇ °ªµéÀ» ¸ğµÎ Áö¿ì°í Å¸ÀÌ¸Ó ÃÊ±âÈ­
-        /// Start ¹öÆ° È°¼ºÈ­ ¹× ¶óº§ ÅØ½ºÆ® ÃÊ±âÈ­
+        /// Reset ë²„íŠ¼ êµ¬í˜„
+        /// ì…€ì˜ ê°’ë“¤ì„ ëª¨ë‘ ì§€ìš°ê³  íƒ€ì´ë¨¸ ì´ˆê¸°í™”
+        /// Start ë²„íŠ¼ í™œì„±í™” ë° ë¼ë²¨ í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
         private void BtnReset_Click(object sender, EventArgs e)
         {
-            // Finish ¹öÆ°º¸´Ù Reset ¹öÆ°À» ¸ÕÀú ´©¸£´Â °æ¿ì ¹æÁöÇÏ¿© Å¸ÀÌ¸Ó Á¤Áö
+            // Finish ë²„íŠ¼ë³´ë‹¤ Reset ë²„íŠ¼ì„ ë¨¼ì € ëˆ„ë¥´ëŠ” ê²½ìš° ë°©ì§€í•˜ì—¬ íƒ€ì´ë¨¸ ì •ì§€
             tmr.Stop();
 
-            // ¼¿ÀÇ °ªÀ» ¸ğµÎ Áö¿ò
+            // ì…€ì˜ ê°’ì„ ëª¨ë‘ ì§€ì›€
             ClearCells();
 
-            // Å¸ÀÓ¾îÅÃ ¸ğµå ¿©ºÎ¿¡ µû¶ó Å¸ÀÌ¸Ó¿Í ¶óº§ ÃÊ±âÈ­
+            // íƒ€ì„ì–´íƒ ëª¨ë“œ ì—¬ë¶€ì— ë”°ë¼ íƒ€ì´ë¨¸ì™€ ë¼ë²¨ ì´ˆê¸°í™”
             if (timeAttack)
             {
                 nCount = nAttCount;
@@ -455,18 +446,18 @@ namespace Sudoku_Play
                 nCount = 0;
                 lbltmr.Text = "00:00:00";
             }
-            // Start ¹öÆ° È°¼ºÈ­
+            // Start ë²„íŠ¼ í™œì„±í™”
             BtnStart.Enabled = true;
 
-            // ¶óº§ ÅØ½ºÆ® ÃÊ±âÈ­
-            lblText.Text = "°ÔÀÓÀ» ½ÃÀÛÇØ ÁÖ¼¼¿ä.";
+            // ë¼ë²¨ í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
+            lblText.Text = "ê²Œì„ì„ ì‹œì‘í•´ ì£¼ì„¸ìš”.";
         }
 
-        private void ¼ıÀÚ»ı¼º°³¼öº¯È­ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ìˆ«ììƒì„±ê°œìˆ˜ë³€í™”ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-        private void ºĞToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ë¶„ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timeAttack = true;
             nAttCount = 60 * 10;
@@ -474,7 +465,7 @@ namespace Sudoku_Play
             tmrText = "00:10:00";
             lbltmr.Text = tmrText;
         }
-        private void ºĞToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ë¶„ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             timeAttack = true;
             nAttCount = 60 * 7;
@@ -482,7 +473,7 @@ namespace Sudoku_Play
             tmrText = "00:07:00";
             lbltmr.Text = tmrText;
         }
-        private void ºĞToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void ë¶„ToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             timeAttack = true;
             nAttCount = 60 * 5;
@@ -490,7 +481,7 @@ namespace Sudoku_Play
             tmrText = "00:05:00";
             lbltmr.Text = tmrText;
         }
-        private void ºĞToolStripMenuItem3_Click(object sender, EventArgs e)
+        private void ë¶„ToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             timeAttack = true;
             nAttCount = 60 * 3;
@@ -498,7 +489,7 @@ namespace Sudoku_Play
             tmrText = "00:03:00";
             lbltmr.Text = tmrText;
         }
-        private void Å¸ÀÓ¾îÅÃ¸ğµå²ô±âToolStripMenuItem_Click(object sender, EventArgs e)
+        private void íƒ€ì„ì–´íƒëª¨ë“œë„ê¸°ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timeAttack = false;
             nCount = 0;
@@ -508,11 +499,6 @@ namespace Sudoku_Play
 
         private void RegularMode99_Click(object sender, EventArgs e)
         {
-            foreach (Label cell in cells)
-                Controls.Remove(cell);
-
-            Invalidate();
-            cells = new List<Label>();
             ClearCells();
             mode = 0;
             point.X = 220;
@@ -523,16 +509,11 @@ namespace Sudoku_Play
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            foreach(Label cell in cells)
-                Controls.Remove(cell);
-            Invalidate();
-            cells = new List<Label>();
+            ClearCells();
             mode = 1;
-            point.X = 325;
-            point.Y = 180;
-            
-            int MAXINPUTVALUE = 4;   
-            
+            point.X = 220;
+            point.Y = 139;
+            int MAXINPUTVALUE = 4;
         }
     }
 }
