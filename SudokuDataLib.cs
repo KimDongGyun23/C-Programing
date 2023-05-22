@@ -1270,10 +1270,10 @@ namespace SudokuDataLib
             int grid_size = block_size * block_size;
 
             int[,] answerArray5 = {
-                {1,2,3,4 },
-                {3,4,1,2 },
-                {2,1,4,3 },
-                {4,3,2,1 }
+                { 1, 2, 3, 4 },
+                { 3, 4, 1, 2 },
+                { 2, 1, 4, 3 },
+                { 4, 3, 2, 1 }
             };
 
             int[,] answerArray3 = {
