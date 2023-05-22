@@ -2,6 +2,10 @@
   "ExpandedNodes": [
     ""
   ],
+<<<<<<< HEAD
   "SelectedNode": "\\Sudoku_Play.sln",
+=======
+  "SelectedNode": "\\Sudoku.cs",
+>>>>>>> 2019203002
   "PreviewInSolutionExplorer": false
 }
