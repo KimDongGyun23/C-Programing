@@ -315,6 +315,17 @@ namespace SudokuDataLib
             return true;
         }
 
+        private bool isFilled()
+        {
+            for (int i = 0; i < grid_size; i++)
+            {
+                for (int j = 0; j < grid_size; j++)
+                    if (grid[i, j].Value == 0)
+                        return false;
+            }
+            return true;
+        }
+
         private List<Cell> FindWrongCells(List<Cell> target_group)
         {
             List<Cell> wrong_cell = new List<Cell>();
@@ -951,6 +962,44 @@ namespace SudokuDataLib
         int grid_size;
         int fixed_cnt;
 
+            if (rows != grid_size || cols != grid_size)
+            {
+                Environment.FailFast("게임판에 맞는 배열을 입력하세요.");
+                return;
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                    SetValue(i, j, InitGird[i, j]);
+            }
+        }
+
+        private void ResetNonFixedCells()
+        {
+            for (int i = 0; i < this.GridSize; i++)
+            {
+                for (int j = 0; j < this.GridSize; j++)
+                {
+                    if (fixed_cells[i, j])
+                    {
+
+                    }
+                    else
+                    {
+                        SetValue(i, j, 0);
+                    }
+                }
+            }
+        }
+    }
+
+    public class JigsawSudokuGameBoard : GameBoard
+    {
+        int block_size;
+        int grid_size;
+        int fixed_cnt;
+
         SquareGrid grid;
 
         bool[,] fixed_cells;
@@ -977,6 +1026,20 @@ namespace SudokuDataLib
             input_log = new Stack<Tuple<int, int, int>>();
             grid_change_log = new Stack<int[,]>();
         }
+
+        public JigsawSudokuGameBoard(int fixed_cnt, int block_size)
+        {
+            //영역 정보 초기화
+            this.area_group_grid = GridGenerator.GenerateDefaultAreaGrid(block_size);
+
+            //격자 객체 생성
+            grid = new SquareGrid(block_size, this.area_group_grid);
+
+            this.block_size = grid.BlockSize;
+            this.grid_size = grid.GridSize;
+            this.fixed_cnt = fixed_cnt;
+
+            this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
 
         public JigsawSudokuGameBoard(int fixed_cnt, int block_size)
         {
