@@ -1,0 +1,170 @@
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play - 복사본\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v2\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v3\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v4\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v5\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Play_v6\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\Sudoku_Programming\Sudoku_Play_v6\C-Programing\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\woohe\OneDrive\바탕 화면\C-Programing\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
