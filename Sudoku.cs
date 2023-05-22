@@ -146,8 +146,8 @@ namespace Sudoku_Play
                     int inputValue = Int32.Parse(inputCell.Text);
 
                     int cellNumber = (int)cell.Tag; // cellNumber = 9 * cellX + cellY
-                    int cellX = cellNumber / 9;
-                    int cellY = cellNumber % 9;
+                    int cellX = cellNumber / GameBoard.GridSize;
+                    int cellY = cellNumber % GameBoard.GridSize;
 
                     if (inputValue >= MININPUTVALUE && inputValue <= MAXINPUTVALUE)
                     {
@@ -317,6 +317,8 @@ namespace Sudoku_Play
             }
 
             Point[,] inputBoxPositions = draw_grid.DrawBoard(cell_edge_len, point, GameBoard.AreaGroup, GameBoard.GridSize, this);
+
+            
 
             int cellSize = draw_grid.input_edge_len;
             int cellWidth = cellSize - 2;
@@ -506,6 +508,11 @@ namespace Sudoku_Play
 
         private void RegularMode99_Click(object sender, EventArgs e)
         {
+            foreach (Label cell in cells)
+                Controls.Remove(cell);
+
+            Invalidate();
+            cells = new List<Label>();
             ClearCells();
             mode = 0;
             point.X = 220;
@@ -516,11 +523,16 @@ namespace Sudoku_Play
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            ClearCells();
+            foreach(Label cell in cells)
+                Controls.Remove(cell);
+            Invalidate();
+            cells = new List<Label>();
             mode = 1;
-            point.X = 220;
-            point.Y = 139;
-            int MAXINPUTVALUE = 4;
+            point.X = 325;
+            point.Y = 180;
+            
+            int MAXINPUTVALUE = 4;   
+            
         }
     }
 }
