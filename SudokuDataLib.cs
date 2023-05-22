@@ -467,7 +467,7 @@
         {
             get { return area_group_grid; }
         }
-
+        
 
         //가장 최근에 입력한 셀의 위치와 이전 값을 반환하는 메소드
         public override bool CanUndo()
@@ -1266,16 +1266,22 @@
         public static int[,] GenerateRegularSudokuGrid(int block_size)
         {
             int grid_size = block_size * block_size;
+            int[,] answerArray2 = {
+                {2, 1, 4, 3},
+                {3, 4, 1, 2},
+                {4, 2, 3, 1},
+                {1, 3, 2, 4}
+            };
             int[,] answerArray3 = {
-                    { 8, 3, 9, 6, 5, 7, 2, 1, 4},
-                    { 6, 7, 2, 9, 4, 1, 5, 8, 3},
-                    { 1, 5, 4, 8, 3, 2, 9, 6, 7},
-                    { 5, 4, 1, 2, 8, 3, 7, 9, 6},
-                    { 2, 8, 7, 4, 9, 6, 3, 5, 1},
-                    { 9, 6, 3, 7, 1, 5, 4, 2, 8},
-                    { 7, 1, 8, 3, 2, 9, 6, 4, 5},
-                    { 3, 2, 5, 1, 6, 4, 8, 7, 9},
-                    { 4, 9, 6, 5, 7, 8, 1, 3, 2}
+                { 8, 3, 9, 6, 5, 7, 2, 1, 4},
+                { 6, 7, 2, 9, 4, 1, 5, 8, 3},
+                { 1, 5, 4, 8, 3, 2, 9, 6, 7},
+                { 5, 4, 1, 2, 8, 3, 7, 9, 6},
+                { 2, 8, 7, 4, 9, 6, 3, 5, 1},
+                { 9, 6, 3, 7, 1, 5, 4, 2, 8},
+                { 7, 1, 8, 3, 2, 9, 6, 4, 5},
+                { 3, 2, 5, 1, 6, 4, 8, 7, 9},
+                { 4, 9, 6, 5, 7, 8, 1, 3, 2}
             };
             int[,] answerArray4 = {
                 {9, 1, 6, 10, 7, 4, 2, 14, 3, 11, 5, 12, 15, 16, 8, 13},
@@ -1298,7 +1304,11 @@
 
             int[,] answerArray=new int[grid_size,grid_size];
 
-            if (block_size == 3)
+            if (block_size == 2)
+            {
+                answerArray = answerArray2;
+            }
+            else if (block_size == 3)
             {
                 answerArray = answerArray3;
             }

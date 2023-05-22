@@ -19,7 +19,6 @@ namespace Sudoku_Play
 
 
         GameBoard GameBoard;
-        //GameBoard GameBoard = new RegularSudokuGameBoard(30,3); // sudoku GameBoard
 
         List<Label> cells = new List<Label>(); // form에 표시되는 cell 제어
         List<bool> isValid = new List<bool>(); // cell 유효성 저장
@@ -51,6 +50,9 @@ namespace Sudoku_Play
         public Sudoku()
         {
             InitializeComponent();
+
+            //기본적인 GameBoard 초기화가 없어서 추가합니다.
+            GameBoard = new RegularSudokuGameBoard(20,3);
         }
 
         // form 실행 시 동작. 현재는 9 * 9 기준으로 작성되어 있음.
@@ -304,23 +306,20 @@ namespace Sudoku_Play
             if (mode == 0)
             {
                 GameBoard = new RegularSudokuGameBoard(20, 3);
-                for (int i = 0; i < GameBoard.GridSize; i++)
-                    for (int j = 0; j < GameBoard.GridSize; j++)
-                        answerArray = GridGenerator.GenerateRegularSudokuGrid(3);
             }
             else if (mode == 1)
             {
                 GameBoard = new RegularSudokuGameBoard(3, 2);
-                for (int i = 0; i < GameBoard.GridSize; i++)
-                    for (int j = 0; j < GameBoard.GridSize; j++)
-                        answerArray = GridGenerator.GenerateRegularSudokuGrid(2);
             }
+
+            //새 스도쿠를 생성하는 버튼
+            GameBoard.ResetSudoku();
 
             Point[,] inputBoxPositions = draw_grid.DrawBoard(cell_edge_len, point, GameBoard.AreaGroup, GameBoard.GridSize, this);
 
             int cellSize = draw_grid.input_edge_len;
-            int cellWidth = cellSize - 2;
-            int cellHeight = cellSize - 2;
+            int cellWidth = cellSize;
+            int cellHeight = cellSize;
             int cellTopValue = point.Y;
 
             // 숫자 비어있는 sudoku grid 생성
@@ -337,10 +336,12 @@ namespace Sudoku_Play
                     cell.BackColor = DEFAULTCOLOR;
                     cell.TextAlign = ContentAlignment.MiddleCenter;
                     cell.BorderStyle = BorderStyle.None;
-                    cell.Width = cellWidth + 2;
-                    cell.Height = cellHeight + 2;
-                    cell.Top = inputBoxPositions[i, j].Y;
-                    cell.Left = inputBoxPositions[i, j].X;
+                    cell.Width = cellWidth;
+                    cell.Height = cellHeight;
+                    //cell위치는 그냥 Location으로 설정하면 됩니다.
+                    //cell.Top = inputBoxPositions[i, j].Y;
+                    //cell.Left = inputBoxPositions[i, j].X;
+                    cell.Location = inputBoxPositions[i, j];
 
                     cells.Add(cell);
                     isValid.Add(true);
@@ -357,18 +358,10 @@ namespace Sudoku_Play
             {
                 for (int j = 0; j < GameBoard.GridSize; j++)
                 {
-                    GameBoard[i, j] = answerArray[i, j];
+                    //이미 클래스 내부에서 랜덤으로 빈칸을 만들기 때문에 랜덤관련 부분은 삭제했습니다.
                     Label cell = cells[GameBoard.GridSize * i + j];
 
-                    Random randObj1 = new Random();
-
-                    // set cell value
-                    // 자신의 값보다 +- 1만큼의 난수를 생성하여 해당 난수와 동일한 값일 경우 마스킹처리
-                    // 랜덤값과 해당 칸의 숫자가 동일하지 않은 경우에만 값을 출력
-                    // 난수의 범위를 지정한다면 난이도 조절 가능할 것으로 예상됨                    
-
-                    //if(GameBoard.IsFixed[i,j])
-                    if (GameBoard[i, j] == randObj1.Next(GameBoard[i, j] - 1, GameBoard[i, j] + 1))
+                    if (!GameBoard.IsFixed[i, j])
                     {
                         GameBoard[i, j] = 0;
                         cell.Text = "";
