@@ -503,12 +503,9 @@
         //새로운 스도쿠 생성
         public override void ResetSudoku()
         {
-            input_log.Clear();
-            grid_change_log.Clear();
+            ClearLog();
 
-            grid_change_log.Push(grid.GetGridValue());
-
-            this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
+            SetFixedCellGrid();
 
             FillGridValue(GridGenerator.GenerateRegularSudokuGrid(this.BlockSize));
 
@@ -560,7 +557,20 @@
 
         //메소드 구현을 위한 private 메소드
 
-        private void FillGridValue(int[,] InitGird)
+        protected void ClearLog()
+        {
+            input_log.Clear();
+            grid_change_log.Clear();
+
+            grid_change_log.Push(grid.GetGridValue());
+        }
+
+        protected void SetFixedCellGrid()
+        {
+            this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
+        }
+
+        protected void FillGridValue(int[,] InitGird)
         {
             int rows = InitGird.GetLength(0);
             int cols = InitGird.GetLength(1);
@@ -578,17 +588,13 @@
             }
         }
 
-        private void ResetNonFixedCells()
+        protected void ResetNonFixedCells()
         {
             for (int i = 0; i < this.GridSize; i++)
             {
                 for (int j = 0; j < this.GridSize; j++)
                 {
-                    if (fixed_cells[i, j])
-                    {
-
-                    }
-                    else
+                    if (!fixed_cells[i, j])
                     {
                         grid[i, j] = 0;
                     }
@@ -609,9 +615,13 @@
 
         public override void ResetSudoku()
         {
-            base.ResetSudoku();
+            ClearLog();
 
-            for(int i=0; i<base.GridSize; i++)
+            SetFixedCellGrid();
+
+            FillGridValue(GridGenerator.GenerateRegularSudokuGrid(this.BlockSize));           
+
+            for (int i=0; i<base.GridSize; i++)
             {
                 for(int j=0; j<base.GridSize; j++)
                 {
@@ -619,6 +629,8 @@
                         odd_grid[i,j] = true;
                 }
             }
+
+            ResetNonFixedCells();
         }
 
         public override bool[,] GetColoredGrid()
@@ -937,11 +949,7 @@
             {
                 for (int j = 0; j < this.GridSize; j++)
                 {
-                    if (fixed_cells[i, j])
-                    {
-
-                    }
-                    else
+                    if (!fixed_cells[i, j])
                     {
                         SetValue(i, j, 0);
                     }
@@ -1165,11 +1173,7 @@
             {
                 for (int j = 0; j < this.GridSize; j++)
                 {
-                    if (fixed_cells[i, j])
-                    {
-
-                    }
-                    else
+                    if (!fixed_cells[i, j])
                     {
                         grid[i, j] = 0;
                     }
