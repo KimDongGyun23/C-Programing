@@ -41,6 +41,7 @@ namespace Sudoku_Play
         Color DEFAULTCOLOR = Color.White;
         Color SELECTEDCOLOR = Color.LightCyan;
         Color INVALIDCOLOR = Color.IndianRed;
+        Color ODDCOLOR = Color.DarkGray;
 
         public Sudoku()
         {
@@ -193,8 +194,16 @@ namespace Sudoku_Play
 
             if (isValid[cellNumber])
             {
-                cell.BackColor = DEFAULTCOLOR;
-                inputCell.BackColor = DEFAULTCOLOR;
+                if (mode == 3)
+                {
+                    cell.BackColor = DEFAULTCOLOR;
+                    inputCell.BackColor = DEFAULTCOLOR;
+                }
+                else
+                {
+                    cell.BackColor = DEFAULTCOLOR;
+                    inputCell.BackColor = DEFAULTCOLOR;
+                }
             }
             else
             {
@@ -298,18 +307,34 @@ namespace Sudoku_Play
             tmr.Start();
             lblText.Text = lblText.Text = "끝까지 도전해보세요.";
 
+            // 9 * 9
             if (mode == 0)
             {
                 GameBoard = new RegularSudokuGameBoard(fixed_cnt, 3);
             }
+            // 4 * 4
             else if (mode == 1)
             {
                 GameBoard = new RegularSudokuGameBoard(4, 2);
             }
+            //16 * 16
+            else if (mode == 2)
+            {
+                GameBoard = new RegularSudokuGameBoard(50, 4);
+            }
+            // 홀짝 스도쿠
+            else if (mode == 3)
+            {
+                GameBoard = new OddEvenSudokuGameBoard(fixed_cnt, 3);
+            }
+            // 사무라이 스도쿠
+            else if (mode == 4)
+            {
+                GameBoard = new SamuraiSudokuGameBoard(100);
+            }
 
-            // 새 스도쿠를 생성하는 버튼
             GameBoard.ResetSudoku();
-
+            
             Point[,] inputBoxPositions = draw_grid.DrawBoard(cell_edge_len, point, GameBoard.AreaGroup, GameBoard.GridSize, this);
 
             int cellSize = draw_grid.input_edge_len;
@@ -361,13 +386,25 @@ namespace Sudoku_Play
                     {
                         cell.Text = GameBoard[i, j].ToString();
                     }
-
                     // add cell event
                     cell.MouseDoubleClick += Cell_DoubleClick;
                     cell.MouseEnter += Cell_Enter;
                     cell.MouseLeave += Cell_Leave;
                 }
             }
+/*            // 홀짝 스도쿠 색깔 조정
+            if (mode == 3)
+            {
+                for (int i = 0; i < GameBoard.GridSize; i++)
+                {
+                    for (int j = 0; j < GameBoard.GridSize; j++)
+                    {
+                        if (GameBoard.GetColoredGrid()[i, j])
+                            cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR;
+                    }
+                }
+            }
+*/
         }
 
         // Correct 버튼 구현
@@ -377,15 +414,25 @@ namespace Sudoku_Play
             {
                 lblText.Text = "틀린 부분이 있군요. 다시 생각해보세요.";
 
-                // 유효성 검사
-                if (!GameBoard.IsValidAll())
+
+                for(int i=0; i < GameBoard.GridSize; i++)
                 {
-                    foreach (Tuple<int, int> tuple in GameBoard.FindWrongCells())
+                    for(int j=0; j < GameBoard.GridSize; j++)
                     {
-                        isValid[9 * tuple.Item1 + tuple.Item2] = false;
-                        cells[9 * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
+                        // 유효성 검사
+                        foreach (Tuple<int, int> tuple in GameBoard.FindWrongCells(i,j))
+                        {
+                            isValid[GameBoard.GridSize * tuple.Item1 + tuple.Item2] = false;
+                            cells[GameBoard.GridSize * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
+                        }
                     }
                 }
+                /*// 유효성 검사 -> 함수 사용 잘못함
+                foreach (Tuple<int, int> tuple in GameBoard.FindWrongCells())
+                {
+                    isValid[GameBoard.GridSize * tuple.Item1 + tuple.Item2] = false;
+                    cells[GameBoard.GridSize * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
+                }*/
             }
             else
             {
@@ -487,9 +534,10 @@ namespace Sudoku_Play
             lbltmr.Text = "00:00:00";
         }
 
-
+        // 9 * 9
         private void RegularMode99_Click(object sender, EventArgs e)
         {
+            mode = 0;
             // 셀을 지움
             foreach (Label cell in cells)
                 Controls.Remove(cell);
@@ -497,18 +545,22 @@ namespace Sudoku_Play
             // 그리드 그래픽 지움
             Invalidate();
 
+            // 폼 크기 변경
+            this.Width = 830;
+            this.Height = 600;
+
             // 셀 초기화
             cells = new List<Label>();
-            ClearCells();
-            mode = 0;
             point.X = 220;
             point.Y = 139;
             
-            int MAXINPUTVALUE = 9;
+            MAXINPUTVALUE = 9;
         }
 
+        // 4 * 4
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
+            mode = 1;
             // 셀을 지움
             foreach (Label cell in cells)
                 Controls.Remove(cell);
@@ -516,28 +568,105 @@ namespace Sudoku_Play
             // 그리드 그래픽 지움
             Invalidate();
 
+            // 폼 크기 변경
+            this.Width = 830;
+            this.Height = 600;
+
             // 셀 초기화
             cells = new List<Label>();
-            mode = 1;
             point.X = 325;
             point.Y = 180;
-
-            int MAXINPUTVALUE = 4;
+            MAXINPUTVALUE = 4;
         }
 
+        // 16 * 16
+        private void RegularMode16_Click(object sender, EventArgs e)
+        {
+            mode = 2;
+            // 셀을 지움
+            foreach (Label cell in cells)
+                Controls.Remove(cell);
+
+            // 그리드 그래픽 지움
+            Invalidate();
+
+            // 폼 크기 변경
+            this.Width = 1100;
+            this.Height = 900;
+
+            // 셀 초기화
+            cells = new List<Label>();
+
+            point.X = 220;
+            point.Y = 139;
+            MAXINPUTVALUE = 16;
+        }
+        
+        // 홀짝 스도쿠
+        private void StripOdd_Click(object sender, EventArgs e)
+        {
+            mode = 3;
+            // 셀을 지움
+            foreach (Label cell in cells)
+                Controls.Remove(cell);
+
+            // 그리드 그래픽 지움
+            Invalidate();
+
+            // 폼 크기 변경
+            this.Width = 830;
+            this.Height = 600;
+
+            // 셀 초기화
+            cells = new List<Label>();
+            point.X = 220;
+            point.Y = 139;
+
+            MAXINPUTVALUE = 9;
+
+        }
+        
+        // 사무라이 스도쿠
+        private void StripSamurai_Click(object sender, EventArgs e)
+        {
+            mode = 4;
+            // 셀을 지움
+            foreach (Label cell in cells)
+                Controls.Remove(cell);
+
+            // 그리드 그래픽 지움
+            Invalidate();
+
+            // 폼 크기 변경
+            this.Width = 1300;
+            this.Height = 1100;
+
+            // 셀 초기화
+            cells = new List<Label>();
+
+            point.X = 220;
+            point.Y = 139;
+            MAXINPUTVALUE = 9;
+
+        }
+
+        // 난이도 Easy 모드
         private void StripEasy_Click(object sender, EventArgs e)
         {
             fixed_cnt = 30;
         }
 
+        // 난이도 Medium 모드
         private void StripMedium_Click(object sender, EventArgs e)
         {
             fixed_cnt = 25;
         }
 
+        // 난이도 Hard 모드
         private void StripHard_Click(object sender, EventArgs e)
         {
             fixed_cnt = 20;
         }
+
     }
 }
