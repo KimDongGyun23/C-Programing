@@ -22,7 +22,6 @@ namespace Sudoku_Play
 
         List<Label> cells = new List<Label>(); // form에 표시되는 cell 제어
         List<bool> isValid = new List<bool>(); // cell 유효성 저장
-        int[,] answerArray;
 
         int MAXINPUTVALUE = 9;
         int MININPUTVALUE = 1;
@@ -34,9 +33,10 @@ namespace Sudoku_Play
         bool timeAttack = false;    // 타임어택 여부 변수
         string tmrText = "";        // 타임어택 시간을 라벨에 넘기기 위한 변수
 
-        int mode = 0;
-        int cell_edge_len = 40;
-        Point point = new Point(220, 139);
+        int mode = 0;               // 변형 스도쿠 모드 변수
+        int fixed_cnt = 25;
+        int cell_edge_len = 40;     
+        Point point = new Point(220, 139);  // 그리드 출력될 위치
 
         Color DEFAULTCOLOR = Color.White;
         Color SELECTEDCOLOR = Color.LightCyan;
@@ -46,12 +46,13 @@ namespace Sudoku_Play
         {
             InitializeComponent();
 
+            /*
             //기본적인 GameBoard 초기화가 없어서 추가합니다.
-            GameBoard = new RegularSudokuGameBoard(20,3);
+            // -> 밑에 start버튼 시 초기화되지 않을지>
+            GameBoard = new RegularSudokuGameBoard(17,3);
+            */
         }
 
-        // form 실행 시 동작. 현재는 9 * 9 기준으로 작성되어 있음.
-        // 추후에 다른 형태도 구현할 시 형태 별로 따로 구현할 예정.
         private void Sudoku_Load(object sender, EventArgs e)
         {
         }
@@ -143,8 +144,8 @@ namespace Sudoku_Play
                     int inputValue = Int32.Parse(inputCell.Text);
 
                     int cellNumber = (int)cell.Tag; // cellNumber = 9 * cellX + cellY
-                    int cellX = cellNumber / 9;
-                    int cellY = cellNumber % 9;
+                    int cellX = cellNumber / GameBoard.GridSize;
+                    int cellY = cellNumber % GameBoard.GridSize;
 
                     if (inputValue >= MININPUTVALUE && inputValue <= MAXINPUTVALUE)
                     {
@@ -297,17 +298,16 @@ namespace Sudoku_Play
             tmr.Start();
             lblText.Text = lblText.Text = "끝까지 도전해보세요.";
 
-
             if (mode == 0)
             {
-                GameBoard = new RegularSudokuGameBoard(20, 3);
+                GameBoard = new RegularSudokuGameBoard(fixed_cnt, 3);
             }
             else if (mode == 1)
             {
-                GameBoard = new RegularSudokuGameBoard(3, 2);
+                GameBoard = new RegularSudokuGameBoard(4, 2);
             }
 
-            //새 스도쿠를 생성하는 버튼
+            // 새 스도쿠를 생성하는 버튼
             GameBoard.ResetSudoku();
 
             Point[,] inputBoxPositions = draw_grid.DrawBoard(cell_edge_len, point, GameBoard.AreaGroup, GameBoard.GridSize, this);
@@ -333,9 +333,6 @@ namespace Sudoku_Play
                     cell.BorderStyle = BorderStyle.None;
                     cell.Width = cellWidth;
                     cell.Height = cellHeight;
-                    //cell위치는 그냥 Location으로 설정하면 됩니다.
-                    //cell.Top = inputBoxPositions[i, j].Y;
-                    //cell.Left = inputBoxPositions[i, j].X;
                     cell.Location = inputBoxPositions[i, j];
 
                     cells.Add(cell);
@@ -353,7 +350,6 @@ namespace Sudoku_Play
             {
                 for (int j = 0; j < GameBoard.GridSize; j++)
                 {
-                    //이미 클래스 내부에서 랜덤으로 빈칸을 만들기 때문에 랜덤관련 부분은 삭제했습니다.
                     Label cell = cells[GameBoard.GridSize * i + j];
 
                     if (!GameBoard.IsFixed[i, j])
@@ -494,15 +490,20 @@ namespace Sudoku_Play
 
         private void RegularMode99_Click(object sender, EventArgs e)
         {
+            // 셀을 지움
             foreach (Label cell in cells)
                 Controls.Remove(cell);
 
+            // 그리드 그래픽 지움
             Invalidate();
+
+            // 셀 초기화
             cells = new List<Label>();
             ClearCells();
             mode = 0;
             point.X = 220;
             point.Y = 139;
+            
             int MAXINPUTVALUE = 9;
         }
 
@@ -522,6 +523,21 @@ namespace Sudoku_Play
             point.Y = 180;
 
             int MAXINPUTVALUE = 4;
+        }
+
+        private void StripEasy_Click(object sender, EventArgs e)
+        {
+            fixed_cnt = 30;
+        }
+
+        private void StripMedium_Click(object sender, EventArgs e)
+        {
+            fixed_cnt = 25;
+        }
+
+        private void StripHard_Click(object sender, EventArgs e)
+        {
+            fixed_cnt = 20;
         }
     }
 }
