@@ -38,20 +38,20 @@
             this.lblText = new System.Windows.Forms.Label();
             this.msgTmr = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.모드변경ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.기본ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegularMode99 = new System.Windows.Forms.ToolStripMenuItem();
             this.타임어택ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.타임어택모드끄기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.모드변경ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.기본ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.RegularMode99 = new System.Windows.Forms.ToolStripMenuItem();
             this.난이도ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.easyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mediumToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.hardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripEasy = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripMedium = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripHard = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,6 +146,37 @@
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // 모드변경ToolStripMenuItem
+            // 
+            this.모드변경ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.기본ToolStripMenuItem});
+            this.모드변경ToolStripMenuItem.Name = "모드변경ToolStripMenuItem";
+            this.모드변경ToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.모드변경ToolStripMenuItem.Text = "모드 변경";
+            // 
+            // 기본ToolStripMenuItem
+            // 
+            this.기본ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem4,
+            this.RegularMode99});
+            this.기본ToolStripMenuItem.Name = "기본ToolStripMenuItem";
+            this.기본ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
+            this.기본ToolStripMenuItem.Text = "기본";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(124, 26);
+            this.toolStripMenuItem4.Text = "4 * 4";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // RegularMode99
+            // 
+            this.RegularMode99.Name = "RegularMode99";
+            this.RegularMode99.Size = new System.Drawing.Size(124, 26);
+            this.RegularMode99.Text = "9 * 9";
+            this.RegularMode99.Click += new System.EventHandler(this.RegularMode99_Click);
+            // 
             // 타임어택ToolStripMenuItem
             // 
             this.타임어택ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -161,96 +192,68 @@
             // 분ToolStripMenuItem
             // 
             this.분ToolStripMenuItem.Name = "분ToolStripMenuItem";
-            this.분ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.분ToolStripMenuItem.Text = "10분";
             this.분ToolStripMenuItem.Click += new System.EventHandler(this.분ToolStripMenuItem_Click);
             // 
             // 분ToolStripMenuItem1
             // 
             this.분ToolStripMenuItem1.Name = "분ToolStripMenuItem1";
-            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(217, 26);
             this.분ToolStripMenuItem1.Text = "7분";
             this.분ToolStripMenuItem1.Click += new System.EventHandler(this.분ToolStripMenuItem1_Click);
             // 
             // 분ToolStripMenuItem2
             // 
             this.분ToolStripMenuItem2.Name = "분ToolStripMenuItem2";
-            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(217, 26);
             this.분ToolStripMenuItem2.Text = "5분";
             this.분ToolStripMenuItem2.Click += new System.EventHandler(this.분ToolStripMenuItem2_Click);
             // 
             // 분ToolStripMenuItem3
             // 
             this.분ToolStripMenuItem3.Name = "분ToolStripMenuItem3";
-            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(224, 26);
+            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(217, 26);
             this.분ToolStripMenuItem3.Text = "3분";
             this.분ToolStripMenuItem3.Click += new System.EventHandler(this.분ToolStripMenuItem3_Click);
             // 
             // 타임어택모드끄기ToolStripMenuItem
             // 
             this.타임어택모드끄기ToolStripMenuItem.Name = "타임어택모드끄기ToolStripMenuItem";
-            this.타임어택모드끄기ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.타임어택모드끄기ToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.타임어택모드끄기ToolStripMenuItem.Text = "타임어택모드 끄기";
             this.타임어택모드끄기ToolStripMenuItem.Click += new System.EventHandler(this.타임어택모드끄기ToolStripMenuItem_Click);
-            // 
-            // 모드변경ToolStripMenuItem
-            // 
-            this.모드변경ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.기본ToolStripMenuItem});
-            this.모드변경ToolStripMenuItem.Name = "모드변경ToolStripMenuItem";
-            this.모드변경ToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
-            this.모드변경ToolStripMenuItem.Text = "모드 변경";
-            // 
-            // 기본ToolStripMenuItem
-            // 
-            this.기본ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
-            this.RegularMode99});
-            this.기본ToolStripMenuItem.Name = "기본ToolStripMenuItem";
-            this.기본ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.기본ToolStripMenuItem.Text = "기본";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(224, 26);
-            this.toolStripMenuItem4.Text = "4 * 4";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
-            // 
-            // RegularMode99
-            // 
-            this.RegularMode99.Name = "RegularMode99";
-            this.RegularMode99.Size = new System.Drawing.Size(224, 26);
-            this.RegularMode99.Text = "9 * 9";
-            this.RegularMode99.Click += new System.EventHandler(this.RegularMode99_Click);
             // 
             // 난이도ToolStripMenuItem
             // 
             this.난이도ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.easyToolStripMenuItem1,
-            this.mediumToolStripMenuItem1,
-            this.hardToolStripMenuItem1});
+            this.StripEasy,
+            this.StripMedium,
+            this.StripHard});
             this.난이도ToolStripMenuItem.Name = "난이도ToolStripMenuItem";
             this.난이도ToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
             this.난이도ToolStripMenuItem.Text = "난이도";
             // 
-            // easyToolStripMenuItem1
+            // StripEasy
             // 
-            this.easyToolStripMenuItem1.Name = "easyToolStripMenuItem1";
-            this.easyToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.easyToolStripMenuItem1.Text = "Easy";
+            this.StripEasy.Name = "StripEasy";
+            this.StripEasy.Size = new System.Drawing.Size(224, 26);
+            this.StripEasy.Text = "Easy";
+            this.StripEasy.Click += new System.EventHandler(this.StripEasy_Click);
             // 
-            // mediumToolStripMenuItem1
+            // StripMedium
             // 
-            this.mediumToolStripMenuItem1.Name = "mediumToolStripMenuItem1";
-            this.mediumToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.mediumToolStripMenuItem1.Text = "Medium";
+            this.StripMedium.Name = "StripMedium";
+            this.StripMedium.Size = new System.Drawing.Size(224, 26);
+            this.StripMedium.Text = "Medium";
+            this.StripMedium.Click += new System.EventHandler(this.StripMedium_Click);
             // 
-            // hardToolStripMenuItem1
+            // StripHard
             // 
-            this.hardToolStripMenuItem1.Name = "hardToolStripMenuItem1";
-            this.hardToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.hardToolStripMenuItem1.Text = "Hard";
+            this.StripHard.Name = "StripHard";
+            this.StripHard.Size = new System.Drawing.Size(224, 26);
+            this.StripHard.Text = "Hard";
+            this.StripHard.Click += new System.EventHandler(this.StripHard_Click);
             // 
             // Sudoku
             // 
@@ -299,8 +302,8 @@
         private ToolStripMenuItem toolStripMenuItem4;
         private ToolStripMenuItem RegularMode99;
         private ToolStripMenuItem 난이도ToolStripMenuItem;
-        private ToolStripMenuItem easyToolStripMenuItem1;
-        private ToolStripMenuItem mediumToolStripMenuItem1;
-        private ToolStripMenuItem hardToolStripMenuItem1;
+        private ToolStripMenuItem StripEasy;
+        private ToolStripMenuItem StripMedium;
+        private ToolStripMenuItem StripHard;
     }
 }
