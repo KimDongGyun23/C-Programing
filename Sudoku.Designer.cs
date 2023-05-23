@@ -39,9 +39,11 @@
             this.msgTmr = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.모드변경ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.기본ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripRegular = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.RegularMode99 = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegularMode16 = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripOdd = new System.Windows.Forms.ToolStripMenuItem();
             this.타임어택ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,11 +54,13 @@
             this.StripEasy = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMedium = new System.Windows.Forms.ToolStripMenuItem();
             this.StripHard = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripSamurai = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnCorrect
             // 
+            this.BtnCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCorrect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnCorrect.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnCorrect.Location = new System.Drawing.Point(666, 186);
@@ -81,6 +85,7 @@
             // 
             // lbltmr
             // 
+            this.lbltmr.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbltmr.AutoSize = true;
             this.lbltmr.Font = new System.Drawing.Font("함초롬돋움", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbltmr.Location = new System.Drawing.Point(354, 38);
@@ -108,6 +113,7 @@
             // 
             // BtnReset
             // 
+            this.BtnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnReset.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnReset.Location = new System.Drawing.Point(666, 278);
@@ -120,6 +126,7 @@
             // 
             // lblText
             // 
+            this.lblText.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblText.Font = new System.Drawing.Font("휴먼엑스포", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblText.Location = new System.Drawing.Point(240, 98);
             this.lblText.Name = "lblText";
@@ -149,33 +156,50 @@
             // 모드변경ToolStripMenuItem
             // 
             this.모드변경ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.기본ToolStripMenuItem});
+            this.StripRegular,
+            this.StripOdd,
+            this.StripSamurai});
             this.모드변경ToolStripMenuItem.Name = "모드변경ToolStripMenuItem";
             this.모드변경ToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.모드변경ToolStripMenuItem.Text = "모드 변경";
             // 
-            // 기본ToolStripMenuItem
+            // StripRegular
             // 
-            this.기본ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripRegular.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem4,
-            this.RegularMode99});
-            this.기본ToolStripMenuItem.Name = "기본ToolStripMenuItem";
-            this.기본ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
-            this.기본ToolStripMenuItem.Text = "기본";
+            this.RegularMode99,
+            this.RegularMode16});
+            this.StripRegular.Name = "StripRegular";
+            this.StripRegular.Size = new System.Drawing.Size(224, 26);
+            this.StripRegular.Text = "기본";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(124, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(140, 26);
             this.toolStripMenuItem4.Text = "4 * 4";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // RegularMode99
             // 
             this.RegularMode99.Name = "RegularMode99";
-            this.RegularMode99.Size = new System.Drawing.Size(124, 26);
+            this.RegularMode99.Size = new System.Drawing.Size(140, 26);
             this.RegularMode99.Text = "9 * 9";
             this.RegularMode99.Click += new System.EventHandler(this.RegularMode99_Click);
+            // 
+            // RegularMode16
+            // 
+            this.RegularMode16.Name = "RegularMode16";
+            this.RegularMode16.Size = new System.Drawing.Size(140, 26);
+            this.RegularMode16.Text = "16 * 16";
+            this.RegularMode16.Click += new System.EventHandler(this.RegularMode16_Click);
+            // 
+            // StripOdd
+            // 
+            this.StripOdd.Name = "StripOdd";
+            this.StripOdd.Size = new System.Drawing.Size(224, 26);
+            this.StripOdd.Text = "홀짝 스도쿠";
+            this.StripOdd.Click += new System.EventHandler(this.StripOdd_Click);
             // 
             // 타임어택ToolStripMenuItem
             // 
@@ -255,6 +279,13 @@
             this.StripHard.Text = "Hard";
             this.StripHard.Click += new System.EventHandler(this.StripHard_Click);
             // 
+            // StripSamurai
+            // 
+            this.StripSamurai.Name = "StripSamurai";
+            this.StripSamurai.Size = new System.Drawing.Size(224, 26);
+            this.StripSamurai.Text = "사무라이 스도쿠";
+            this.StripSamurai.Click += new System.EventHandler(this.StripSamurai_Click);
+            // 
             // Sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -298,12 +329,15 @@
         private ToolStripMenuItem 분ToolStripMenuItem3;
         private ToolStripMenuItem 타임어택모드끄기ToolStripMenuItem;
         private ToolStripMenuItem 모드변경ToolStripMenuItem;
-        private ToolStripMenuItem 기본ToolStripMenuItem;
+        private ToolStripMenuItem StripRegular;
         private ToolStripMenuItem toolStripMenuItem4;
         private ToolStripMenuItem RegularMode99;
         private ToolStripMenuItem 난이도ToolStripMenuItem;
         private ToolStripMenuItem StripEasy;
         private ToolStripMenuItem StripMedium;
         private ToolStripMenuItem StripHard;
+        private ToolStripMenuItem RegularMode16;
+        private ToolStripMenuItem StripOdd;
+        private ToolStripMenuItem StripSamurai;
     }
 }
