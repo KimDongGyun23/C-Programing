@@ -481,7 +481,9 @@
         public override Tuple<int, int, int> Undo()
         {
             Tuple<int, int, int> undo_pos = input_log.Pop();
-            int undo_value = grid_change_log.Pop()[undo_pos.Item1, undo_pos.Item2];
+            grid_change_log.Pop();
+
+            int undo_value = grid_change_log.Peek()[undo_pos.Item1, undo_pos.Item2];
 
             grid[undo_pos.Item1, undo_pos.Item2] = undo_value;
 
@@ -501,12 +503,11 @@
         //새로운 스도쿠 생성
         public override void ResetSudoku()
         {
-            input_log.Clear();
-            grid_change_log.Clear();
+            ClearLog();
 
-            this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
+            SetFixedCellGrid();
 
-            FillGirdValue(GridGenerator.GenerateRegularSudokuGrid(this.BlockSize));
+            FillGridValue(GridGenerator.GenerateRegularSudokuGrid(this.BlockSize));
 
             ResetNonFixedCells();
         }
@@ -556,7 +557,20 @@
 
         //메소드 구현을 위한 private 메소드
 
-        private void FillGirdValue(int[,] InitGird)
+        protected void ClearLog()
+        {
+            input_log.Clear();
+            grid_change_log.Clear();
+
+            grid_change_log.Push(grid.GetGridValue());
+        }
+
+        protected void SetFixedCellGrid()
+        {
+            this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
+        }
+
+        protected void FillGridValue(int[,] InitGird)
         {
             int rows = InitGird.GetLength(0);
             int cols = InitGird.GetLength(1);
@@ -574,17 +588,13 @@
             }
         }
 
-        private void ResetNonFixedCells()
+        protected void ResetNonFixedCells()
         {
             for (int i = 0; i < this.GridSize; i++)
             {
                 for (int j = 0; j < this.GridSize; j++)
                 {
-                    if (fixed_cells[i, j])
-                    {
-
-                    }
-                    else
+                    if (!fixed_cells[i, j])
                     {
                         grid[i, j] = 0;
                     }
@@ -605,9 +615,13 @@
 
         public override void ResetSudoku()
         {
-            base.ResetSudoku();
+            ClearLog();
 
-            for(int i=0; i<base.GridSize; i++)
+            SetFixedCellGrid();
+
+            FillGridValue(GridGenerator.GenerateRegularSudokuGrid(this.BlockSize));           
+
+            for (int i=0; i<base.GridSize; i++)
             {
                 for(int j=0; j<base.GridSize; j++)
                 {
@@ -615,6 +629,8 @@
                         odd_grid[i,j] = true;
                 }
             }
+
+            ResetNonFixedCells();
         }
 
         public override bool[,] GetColoredGrid()
@@ -732,7 +748,8 @@
         public override Tuple<int, int, int> Undo()
         {
             Tuple<int, int, int> undo_pos = input_log.Pop();
-            int undo_value = grid_change_log.Pop()[undo_pos.Item1, undo_pos.Item2];
+            grid_change_log.Pop();
+            int undo_value = grid_change_log.Peek()[undo_pos.Item1, undo_pos.Item2];
 
             SetValue(undo_pos.Item1, undo_pos.Item2,  undo_value);
 
@@ -814,9 +831,11 @@
             input_log.Clear();
             grid_change_log.Clear();
 
+            grid_change_log.Push(GetGridValue());
+
             this.fixed_cells = GridGenerator.GenerateRandomFixedCellSamuraiGrid(fixed_cnt);
 
-            FillGirdValue(GridGenerator.GenerateSamuraiSudokuGrid());
+            FillGridValue(GridGenerator.GenerateSamuraiSudokuGrid());
 
             ResetNonFixedCells();
         }
@@ -906,7 +925,7 @@
             return return_obj;
         }
 
-        private void FillGirdValue(int[,] InitGird)
+        private void FillGridValue(int[,] InitGird)
         {
             int rows = InitGird.GetLength(0);
             int cols = InitGird.GetLength(1);
@@ -930,11 +949,7 @@
             {
                 for (int j = 0; j < this.GridSize; j++)
                 {
-                    if (fixed_cells[i, j])
-                    {
-
-                    }
-                    else
+                    if (!fixed_cells[i, j])
                     {
                         SetValue(i, j, 0);
                     }
@@ -1045,7 +1060,9 @@
         public override Tuple<int, int, int> Undo()
         {
             Tuple<int, int, int> undo_pos = input_log.Pop();
-            int undo_value = grid_change_log.Pop()[undo_pos.Item1, undo_pos.Item2];
+            grid_change_log.Pop();
+
+            int undo_value = grid_change_log.Peek()[undo_pos.Item1, undo_pos.Item2];
 
             grid[undo_pos.Item1, undo_pos.Item2] = undo_value;
 
@@ -1087,6 +1104,8 @@
             input_log.Clear();
             grid_change_log.Clear();
 
+            grid_change_log.Push(grid.GetGridValue());
+
             this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
 
             ResetNonFixedCells();
@@ -1123,7 +1142,7 @@
         
         //메소드 구현을 위한 private 메소드
 
-        private void FillGirdValue(int[,] InitGird)
+        private void FillGridValue(int[,] InitGird)
         {
             int rows = InitGird.GetLength(0);
             int cols = InitGird.GetLength(1);
@@ -1154,11 +1173,7 @@
             {
                 for (int j = 0; j < this.GridSize; j++)
                 {
-                    if (fixed_cells[i, j])
-                    {
-
-                    }
-                    else
+                    if (!fixed_cells[i, j])
                     {
                         grid[i, j] = 0;
                     }
