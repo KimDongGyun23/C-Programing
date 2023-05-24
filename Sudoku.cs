@@ -379,7 +379,7 @@ namespace Sudoku_Play
             // Start 버튼 비활성화
             BtnStart.Enabled = false;
 
-            generateGrid(9, 1);
+            generateGrid(16, 1, 25);
 
             // 타이머 시작 및 정답값 랜덤 생성
             tmr.Start();
