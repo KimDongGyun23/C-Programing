@@ -32,28 +32,37 @@ namespace Sudoku_Play
         string tmrText = "";        // 타임어택 시간을 라벨에 넘기기 위한 변수
 
         int mode = 0;               // 변형 스도쿠 모드 변수
-        int fixed_cnt = 25;         // 출력될 힌트 개수
+        int level = 1;         // 출력될 힌트 개수
         int cell_edge_len = 40;     
         Point point = new Point(220, 139);  // 그리드 출력될 위치
+
 
         Color DEFAULTCOLOR = Color.White;
         Color SELECTEDCOLOR = Color.LightCyan;
         Color INVALIDCOLOR = Color.IndianRed;
         Color ODDCOLOR = Color.DarkGray;
 
+        /// 난이도/mode    9*9    4*4   16*16   홀짝    사무라이
+        ///     EASY        30     5      95     30       130
+        ///     MEDIUM      25     5      80     25       115
+        ///     HARD        20     5      65     20       100
+        int [,] fixedCnt = {
+            {30, 5, 95, 30, 130},
+            {25, 5, 80, 25, 115},
+            {20, 5, 65, 20, 100}
+        };
+
         public Sudoku()
         {
             InitializeComponent();
-
-            /*
-            //기본적인 GameBoard 초기화가 없어서 추가합니다.
-            // -> 밑에 start버튼 시 초기화되지 않을지>
-            GameBoard = new RegularSudokuGameBoard(17,3);
-            */
         }
 
         private void Sudoku_Load(object sender, EventArgs e)
         {
+            BtnCorrect.Enabled = false;
+            BtnFinish.Enabled = false;
+            BtnReset.Enabled = false;
+            BtnUndo.Enabled = false;
         }
 
         // cell을 더블클릭 시 입력창이 나와 값을 수정할 수 있음.
@@ -102,14 +111,11 @@ namespace Sudoku_Play
                 // 홀짝 모드 시 컬러 초기화
                 if (mode == 3)
                 {
-                    for (int i = 0; i < GameBoard.GridSize; i++)
-                        for (int j = 0; j < GameBoard.GridSize; j++)
-                        {
-                            if (GameBoard.GetColoredGrid()[i, j])
-                                cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR;         // 홀수 색 변경
-                            else
-                                cells[GameBoard.GridSize * i + j].BackColor = DEFAULTCOLOR;     // 짝수 기본색
-                        }
+                    int col = cellNumber / GameBoard.GridSize;
+                    int row = cellNumber % GameBoard.GridSize;
+
+                    if (GameBoard.GetColoredGrid()[col, row]) cell.BackColor = ODDCOLOR;
+                    else cell.BackColor = DEFAULTCOLOR;
                 }
                 else
                 {
@@ -131,7 +137,6 @@ namespace Sudoku_Play
                 }
             }
         }
-
         // cell 더블클릭 시 나오는 입력창 제어에 사용되는 이벤트.
         // enter: 1 ~ 9 사이의 값이 입력되었을 경우 해당하는 cell의 값을 변경함. (9 * 9 기준)
         // esc: 입력값에 상관없이 창을 닫음.
@@ -197,20 +202,21 @@ namespace Sudoku_Play
             {
                 if (mode == 3)
                 {
-                    for(int i=0; i<GameBoard.GridSize; i++)
-                        for(int j=0; j<GameBoard.GridSize; j++)
-                        {
-                            if (GameBoard.GetColoredGrid()[i, j])
-                            {
-                                cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR;
-                                inputCell.BackColor = ODDCOLOR;
-                            }
-                            else
-                            {
-                                cells[GameBoard.GridSize * i + j].BackColor = DEFAULTCOLOR;
-                                inputCell.BackColor = DEFAULTCOLOR;
-                            }
-                        }
+                    int col = cellNumber / GameBoard.GridSize;
+                    int row = cellNumber % GameBoard.GridSize;
+
+                    if (GameBoard.GetColoredGrid()[col, row])
+                    {
+                        cell.BackColor = ODDCOLOR;
+                        inputCell.BackColor = ODDCOLOR;
+
+                    }
+                    else
+                    {
+                        cell.BackColor = DEFAULTCOLOR;
+                        inputCell.BackColor = DEFAULTCOLOR;
+                    }
+
                 }
                 else
                 {
@@ -326,6 +332,10 @@ namespace Sudoku_Play
         {
             // Start 버튼 비활성화
             BtnStart.Enabled = false;
+            BtnCorrect.Enabled = true;
+            BtnFinish.Enabled = true;
+            BtnReset.Enabled = true;
+            BtnUndo.Enabled = true;
 
             // 타이머 시작 및 정답값 랜덤 생성
             tmr.Start();
@@ -334,27 +344,27 @@ namespace Sudoku_Play
             // 9 * 9
             if (mode == 0)
             {
-                GameBoard = new RegularSudokuGameBoard(fixed_cnt, 3);
+                GameBoard = new RegularSudokuGameBoard(fixedCnt[level,mode], 3);
             }
             // 4 * 4
             else if (mode == 1)
             {
-                GameBoard = new RegularSudokuGameBoard(4, 2);
+                GameBoard = new RegularSudokuGameBoard(fixedCnt[level, mode], 2);
             }
             //16 * 16
             else if (mode == 2)
             {
-                GameBoard = new RegularSudokuGameBoard(50, 4);
+                GameBoard = new RegularSudokuGameBoard(fixedCnt[level, mode], 4);
             }
             // 홀짝 스도쿠
             else if (mode == 3)
             {
-                GameBoard = new OddEvenSudokuGameBoard(fixed_cnt, 3);
+                GameBoard = new OddEvenSudokuGameBoard(fixedCnt[level, mode], 3);
             }
             // 사무라이 스도쿠
             else if (mode == 4)
             {
-                GameBoard = new SamuraiSudokuGameBoard(100);
+                GameBoard = new SamuraiSudokuGameBoard(fixedCnt[level, mode]);
             }
 
             GameBoard.ResetSudoku();
@@ -400,7 +410,6 @@ namespace Sudoku_Play
 
                     if (!GameBoard.IsFixed[i, j])
                     {
-                        GameBoard[i, j] = 0;
                         cell.Text = "";
                     }
                     else
@@ -495,6 +504,21 @@ namespace Sudoku_Play
             lblText.Text = "게임을 시작해 주세요.";      // 라벨 텍스트 초기화
         }
 
+        private void BtnUndo_Click(object sender, EventArgs e)
+        {
+            if(GameBoard.CanUndo()){
+                var retrun_value = GameBoard.Undo();
+                int cellNumber = retrun_value.Item1 * GameBoard.GridSize + retrun_value.Item2;
+                if (retrun_value.Item3 != 0)
+                {
+                    cells[cellNumber].Text = retrun_value.Item3.ToString();
+                }
+                else
+                {
+                    cells[cellNumber].Text = "";
+                }
+            }
+        }
         private void 분ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timeAttack = true;
@@ -631,20 +655,24 @@ namespace Sudoku_Play
         // 난이도 Easy 모드
         private void StripEasy_Click(object sender, EventArgs e)
         {
-            fixed_cnt = 30;
+            level = 0;
+            lblLevel.Text = "난이도 : Easy";
         }
 
         // 난이도 Medium 모드
         private void StripMedium_Click(object sender, EventArgs e)
         {
-            fixed_cnt = 25;
+            level = 1;
+            lblLevel.Text = "난이도 : Medium";
         }
 
         // 난이도 Hard 모드
         private void StripHard_Click(object sender, EventArgs e)
         {
-            fixed_cnt = 20;
+            level = 2;
+            lblLevel.Text = "난이도 : Hard";
         }
+
 
     }
 }
