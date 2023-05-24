@@ -44,6 +44,7 @@
             this.RegularMode99 = new System.Windows.Forms.ToolStripMenuItem();
             this.RegularMode16 = new System.Windows.Forms.ToolStripMenuItem();
             this.StripOdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripSamurai = new System.Windows.Forms.ToolStripMenuItem();
             this.타임어택ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.분ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,8 @@
             this.StripEasy = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMedium = new System.Windows.Forms.ToolStripMenuItem();
             this.StripHard = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripSamurai = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnUndo = new System.Windows.Forms.Button();
+            this.lblLevel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -170,7 +172,7 @@
             this.RegularMode99,
             this.RegularMode16});
             this.StripRegular.Name = "StripRegular";
-            this.StripRegular.Size = new System.Drawing.Size(224, 26);
+            this.StripRegular.Size = new System.Drawing.Size(202, 26);
             this.StripRegular.Text = "기본";
             // 
             // toolStripMenuItem4
@@ -197,9 +199,16 @@
             // StripOdd
             // 
             this.StripOdd.Name = "StripOdd";
-            this.StripOdd.Size = new System.Drawing.Size(224, 26);
+            this.StripOdd.Size = new System.Drawing.Size(202, 26);
             this.StripOdd.Text = "홀짝 스도쿠";
             this.StripOdd.Click += new System.EventHandler(this.StripOdd_Click);
+            // 
+            // StripSamurai
+            // 
+            this.StripSamurai.Name = "StripSamurai";
+            this.StripSamurai.Size = new System.Drawing.Size(202, 26);
+            this.StripSamurai.Text = "사무라이 스도쿠";
+            this.StripSamurai.Click += new System.EventHandler(this.StripSamurai_Click);
             // 
             // 타임어택ToolStripMenuItem
             // 
@@ -261,30 +270,46 @@
             // StripEasy
             // 
             this.StripEasy.Name = "StripEasy";
-            this.StripEasy.Size = new System.Drawing.Size(224, 26);
+            this.StripEasy.Size = new System.Drawing.Size(149, 26);
             this.StripEasy.Text = "Easy";
             this.StripEasy.Click += new System.EventHandler(this.StripEasy_Click);
             // 
             // StripMedium
             // 
             this.StripMedium.Name = "StripMedium";
-            this.StripMedium.Size = new System.Drawing.Size(224, 26);
+            this.StripMedium.Size = new System.Drawing.Size(149, 26);
             this.StripMedium.Text = "Medium";
             this.StripMedium.Click += new System.EventHandler(this.StripMedium_Click);
             // 
             // StripHard
             // 
             this.StripHard.Name = "StripHard";
-            this.StripHard.Size = new System.Drawing.Size(224, 26);
+            this.StripHard.Size = new System.Drawing.Size(149, 26);
             this.StripHard.Text = "Hard";
             this.StripHard.Click += new System.EventHandler(this.StripHard_Click);
             // 
-            // StripSamurai
+            // BtnUndo
             // 
-            this.StripSamurai.Name = "StripSamurai";
-            this.StripSamurai.Size = new System.Drawing.Size(224, 26);
-            this.StripSamurai.Text = "사무라이 스도쿠";
-            this.StripSamurai.Click += new System.EventHandler(this.StripSamurai_Click);
+            this.BtnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnUndo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.BtnUndo.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnUndo.Location = new System.Drawing.Point(666, 368);
+            this.BtnUndo.Name = "BtnUndo";
+            this.BtnUndo.Size = new System.Drawing.Size(124, 47);
+            this.BtnUndo.TabIndex = 7;
+            this.BtnUndo.Text = "Undo";
+            this.BtnUndo.UseVisualStyleBackColor = false;
+            this.BtnUndo.Click += new System.EventHandler(this.BtnUndo_Click);
+            // 
+            // lblLevel
+            // 
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.Font = new System.Drawing.Font("휴먼모음T", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblLevel.Location = new System.Drawing.Point(25, 52);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(116, 17);
+            this.lblLevel.TabIndex = 8;
+            this.lblLevel.Text = "난이도 : Medium";
             // 
             // Sudoku
             // 
@@ -292,6 +317,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(812, 553);
+            this.Controls.Add(this.lblLevel);
+            this.Controls.Add(this.BtnUndo);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.BtnReset);
             this.Controls.Add(this.BtnFinish);
@@ -339,5 +366,7 @@
         private ToolStripMenuItem RegularMode16;
         private ToolStripMenuItem StripOdd;
         private ToolStripMenuItem StripSamurai;
+        private Button BtnUndo;
+        private Label lblLevel;
     }
 }
