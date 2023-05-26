@@ -414,7 +414,10 @@ namespace Sudoku_Play
                     }
                     else
                     {
+                        cell.ForeColor = Color.Green;
+                        cell.Font = new Font(cell.Font, FontStyle.Bold);
                         cell.Text = GameBoard[i, j].ToString();
+                        
                     }
                     if (mode == 3)
                     {
