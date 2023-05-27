@@ -147,7 +147,7 @@ namespace Sudoku_Play
 
             if (e.KeyChar == (char)Keys.Return)
             {
-                if (inputCell.Text.All(char.IsDigit)) // check text has non-numbers
+                if (inputCell.Text.Length != 0 && inputCell.Text.All(char.IsDigit)) // check text has non-numbers
                 {
                     int inputValue = Int32.Parse(inputCell.Text);
 
