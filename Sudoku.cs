@@ -411,18 +411,23 @@ namespace Sudoku_Play
                     if (!GameBoard.IsFixed[i, j])
                     {
                         cell.Text = "";
+
+                        cell.MouseDoubleClick += Cell_DoubleClick;
                     }
                     else
                     {
+                        cell.ForeColor = Color.Green;
+                        cell.Font = new Font(cell.Font, FontStyle.Bold);
                         cell.Text = GameBoard[i, j].ToString();
                     }
                     if (mode == 3)
                     {
                         if (GameBoard.GetColoredGrid()[i, j])
-                            cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR; 
+                            cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR;
+
+                        cell.MouseDoubleClick += Cell_DoubleClick;
                     }
                     // add cell event
-                    cell.MouseDoubleClick += Cell_DoubleClick;
                     cell.MouseEnter += Cell_Enter;
                     cell.MouseLeave += Cell_Leave;
                 }
