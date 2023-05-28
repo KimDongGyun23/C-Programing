@@ -677,7 +677,5 @@ namespace Sudoku_Play
             level = 2;
             lblLevel.Text = "난이도 : Hard";
         }
-
-
     }
 }
