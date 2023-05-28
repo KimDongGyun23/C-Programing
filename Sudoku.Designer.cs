@@ -57,6 +57,7 @@
             this.StripHard = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnUndo = new System.Windows.Forms.Button();
             this.lblLevel = new System.Windows.Forms.Label();
+            this.StripJigsaw = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,7 +161,8 @@
             this.모드변경ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripRegular,
             this.StripOdd,
-            this.StripSamurai});
+            this.StripSamurai,
+            this.StripJigsaw});
             this.모드변경ToolStripMenuItem.Name = "모드변경ToolStripMenuItem";
             this.모드변경ToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.모드변경ToolStripMenuItem.Text = "모드 변경";
@@ -172,7 +174,7 @@
             this.RegularMode99,
             this.RegularMode16});
             this.StripRegular.Name = "StripRegular";
-            this.StripRegular.Size = new System.Drawing.Size(202, 26);
+            this.StripRegular.Size = new System.Drawing.Size(224, 26);
             this.StripRegular.Text = "기본";
             // 
             // toolStripMenuItem4
@@ -199,14 +201,14 @@
             // StripOdd
             // 
             this.StripOdd.Name = "StripOdd";
-            this.StripOdd.Size = new System.Drawing.Size(202, 26);
+            this.StripOdd.Size = new System.Drawing.Size(224, 26);
             this.StripOdd.Text = "홀짝 스도쿠";
             this.StripOdd.Click += new System.EventHandler(this.StripOdd_Click);
             // 
             // StripSamurai
             // 
             this.StripSamurai.Name = "StripSamurai";
-            this.StripSamurai.Size = new System.Drawing.Size(202, 26);
+            this.StripSamurai.Size = new System.Drawing.Size(224, 26);
             this.StripSamurai.Text = "사무라이 스도쿠";
             this.StripSamurai.Click += new System.EventHandler(this.StripSamurai_Click);
             // 
@@ -225,35 +227,35 @@
             // 분ToolStripMenuItem
             // 
             this.분ToolStripMenuItem.Name = "분ToolStripMenuItem";
-            this.분ToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.분ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem.Text = "10분";
             this.분ToolStripMenuItem.Click += new System.EventHandler(this.분ToolStripMenuItem_Click);
             // 
             // 분ToolStripMenuItem1
             // 
             this.분ToolStripMenuItem1.Name = "분ToolStripMenuItem1";
-            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(217, 26);
+            this.분ToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem1.Text = "7분";
             this.분ToolStripMenuItem1.Click += new System.EventHandler(this.분ToolStripMenuItem1_Click);
             // 
             // 분ToolStripMenuItem2
             // 
             this.분ToolStripMenuItem2.Name = "분ToolStripMenuItem2";
-            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(217, 26);
+            this.분ToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem2.Text = "5분";
             this.분ToolStripMenuItem2.Click += new System.EventHandler(this.분ToolStripMenuItem2_Click);
             // 
             // 분ToolStripMenuItem3
             // 
             this.분ToolStripMenuItem3.Name = "분ToolStripMenuItem3";
-            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(217, 26);
+            this.분ToolStripMenuItem3.Size = new System.Drawing.Size(224, 26);
             this.분ToolStripMenuItem3.Text = "3분";
             this.분ToolStripMenuItem3.Click += new System.EventHandler(this.분ToolStripMenuItem3_Click);
             // 
             // 타임어택모드끄기ToolStripMenuItem
             // 
             this.타임어택모드끄기ToolStripMenuItem.Name = "타임어택모드끄기ToolStripMenuItem";
-            this.타임어택모드끄기ToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.타임어택모드끄기ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.타임어택모드끄기ToolStripMenuItem.Text = "타임어택모드 끄기";
             this.타임어택모드끄기ToolStripMenuItem.Click += new System.EventHandler(this.타임어택모드끄기ToolStripMenuItem_Click);
             // 
@@ -310,6 +312,13 @@
             this.lblLevel.Size = new System.Drawing.Size(116, 17);
             this.lblLevel.TabIndex = 8;
             this.lblLevel.Text = "난이도 : Medium";
+            // 
+            // StripJigsaw
+            // 
+            this.StripJigsaw.Name = "StripJigsaw";
+            this.StripJigsaw.Size = new System.Drawing.Size(224, 26);
+            this.StripJigsaw.Text = "직쏘 스도쿠";
+            this.StripJigsaw.Click += new System.EventHandler(this.StripJigsaw_Click);
             // 
             // Sudoku
             // 
@@ -368,5 +377,6 @@
         private ToolStripMenuItem StripSamurai;
         private Button BtnUndo;
         private Label lblLevel;
+        private ToolStripMenuItem StripJigsaw;
     }
 }
