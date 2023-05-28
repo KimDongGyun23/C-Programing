@@ -43,13 +43,13 @@ namespace Sudoku_Play
         Color ODDCOLOR = Color.DarkGray;
 
         /// 난이도/mode    9*9    4*4   16*16   홀짝    사무라이     직쏘
-        ///     EASY        40     5      95     40       130         40
-        ///     MEDIUM      35     5      80     35       115         35
-        ///     HARD        30     5      65     30       100         30
+        ///     EASY        50     5      95     50       170         50
+        ///     MEDIUM      43     5      80     43       160         43
+        ///     HARD        36     5      65     36       150         36
         int [,] fixedCnt = {
-            {40, 5, 95, 40, 130, 40},
-            {35, 5, 80, 35, 115, 35},
-            {30, 5, 65, 30, 100, 30}
+            {50, 5, 95, 50, 170, 50},
+            {43, 5, 80, 43, 160, 43},
+            {36, 5, 65, 36, 150, 36}
         };
 
         public Sudoku()
@@ -147,7 +147,7 @@ namespace Sudoku_Play
 
             if (e.KeyChar == (char)Keys.Return)
             {
-                if (inputCell.Text.Length != 0 && inputCell.Text.All(char.IsDigit)) // check text has non-numbers
+                if (inputCell.Text.All(char.IsDigit)) // check text has non-numbers
                 {
                     int inputValue = Int32.Parse(inputCell.Text);
 
@@ -418,21 +418,21 @@ namespace Sudoku_Play
                     if (!GameBoard.IsFixed[i, j])
                     {
                         cell.Text = "";
-                        cell.MouseDoubleClick += Cell_DoubleClick;
                     }
                     else
                     {
                         cell.ForeColor = Color.Green;
                         cell.Font = new Font(cell.Font, FontStyle.Bold);
                         cell.Text = GameBoard[i, j].ToString();
+                        
                     }
                     if (mode == 3)
                     {
                         if (GameBoard.GetColoredGrid()[i, j])
-                            cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR;
-                        cell.MouseDoubleClick += Cell_DoubleClick;
+                            cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR; 
                     }
                     // add cell event
+                    cell.MouseDoubleClick += Cell_DoubleClick;
                     cell.MouseEnter += Cell_Enter;
                     cell.MouseLeave += Cell_Leave;
                 }
@@ -701,5 +701,6 @@ namespace Sudoku_Play
             level = 2;
             lblLevel.Text = "난이도 : Hard";
         }
+
     }
 }
