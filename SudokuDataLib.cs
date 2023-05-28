@@ -1,4 +1,7 @@
-﻿namespace SudokuDataLib
+﻿using JigsawSudokuGenerator;
+using System.Collections.Generic;
+
+namespace SudokuDataLib
 {
     public enum GroupType
     {
@@ -406,7 +409,7 @@
         SquareGrid grid;
 
         bool[,] fixed_cells;
-        int[,] area_group_grid;
+        protected int[,] area_group_grid;
 
         Stack<Tuple<int, int, int>> input_log;
         Stack<int[,]> grid_change_log;
@@ -555,7 +558,7 @@
             return grid.FindWrongCells(group_type, group_num);
         }
 
-        //메소드 구현을 위한 private 메소드
+        //메소드 구현을 위한 protected 메소드
 
         protected void ClearLog()
         {
@@ -588,6 +591,26 @@
             }
         }
 
+        protected void SetAreaGroupGrid(int[,] area_grid)
+        {
+            int rows = area_grid.GetLength(0);
+            int cols = area_grid.GetLength(1);
+
+            if (rows != grid_size || cols != grid_size)
+            {
+                Environment.FailFast("게임판에 맞는 배열을 입력하세요.");
+                return;
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                    area_group_grid[i, j] = area_grid[i, j];
+            }
+
+            grid = new SquareGrid(block_size, this.area_group_grid);
+        }
+
         protected void ResetNonFixedCells()
         {
             for (int i = 0; i < this.GridSize; i++)
@@ -600,7 +623,7 @@
                     }
                 }
             }
-        }
+        }       
     }
 
     public class OddEvenSudokuGameBoard : RegularSudokuGameBoard
@@ -958,126 +981,15 @@
         }
     }
 
-    public class JigsawSudokuGameBoard : GameBoard
+    public class JigsawSudokuGameBoard : RegularSudokuGameBoard
     {
-        int block_size;
-        int grid_size;
-        int fixed_cnt;
-
-        SquareGrid grid;
-
-        bool[,] fixed_cells;
-        int[,] area_group_grid;
-
-        Stack<Tuple<int, int, int>> input_log;
-        Stack<int[,]> grid_change_log;
-
+        List<JigsawSudokuData> game_data_list;
         //생성자
-        public JigsawSudokuGameBoard(int fixed_cnt, int block_size, int[,] area_group_grid)
+        public JigsawSudokuGameBoard(int fixed_cnt, int block_size): base(fixed_cnt, block_size)
         {
-            //영역 정보 초기화
-            this.area_group_grid = area_group_grid;
-
-            //격자 객체 생성
-            grid = new SquareGrid(block_size, area_group_grid);
-
-            this.block_size = grid.BlockSize;
-            this.grid_size = grid.GridSize;
-            this.fixed_cnt = fixed_cnt;
-
-            this.fixed_cells = new bool[grid_size, grid_size];
-
-            input_log = new Stack<Tuple<int, int, int>>();
-            grid_change_log = new Stack<int[,]>();
+            game_data_list = JigsawSudokuFileOpener.ReadFile();
         }
-
-        public JigsawSudokuGameBoard(int fixed_cnt, int block_size)
-        {
-            //영역 정보 초기화
-            this.area_group_grid = GridGenerator.GenerateDefaultAreaGrid(block_size);
-
-            //격자 객체 생성
-            grid = new SquareGrid(block_size, this.area_group_grid);
-
-            this.block_size = grid.BlockSize;
-            this.grid_size = grid.GridSize;
-            this.fixed_cnt = fixed_cnt;
-
-            this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
-
-            input_log = new Stack<Tuple<int, int, int>>();
-            grid_change_log = new Stack<int[,]>();
-        }
-
-        //속성 및 인덱서
-        public override int this[int n, int m]
-        {
-            get
-            {
-                return grid[n, m];
-            }
-            set
-            {
-                if (fixed_cells[n, m])
-                    return;
-                else
-                    grid[n, m] = value;
-
-                input_log.Push(new Tuple<int, int, int>(n, m, value));
-                grid_change_log.Push(grid.GetGridValue());
-            }
-        }
-
-        public override bool[,] IsFixed
-        {
-            get { return fixed_cells; }
-        }
-
-        public override int BlockSize
-        {
-            get { return block_size; }
-        }
-
-        public override int GridSize
-        {
-            get { return grid_size; }
-        }
-
-        public override int[,] AreaGroup
-        {
-            get { return area_group_grid; }
-        }
-
-        //가장 최근에 입력한 셀의 위치와 이전 값을 반환하는 메소드
-        public override bool CanUndo()
-        {
-            if (input_log.Count == 0)
-                return false;
-
-            return true;
-        }
-
-        public override Tuple<int, int, int> Undo()
-        {
-            Tuple<int, int, int> undo_pos = input_log.Pop();
-            grid_change_log.Pop();
-
-            int undo_value = grid_change_log.Peek()[undo_pos.Item1, undo_pos.Item2];
-
-            grid[undo_pos.Item1, undo_pos.Item2] = undo_value;
-
-            return new Tuple<int, int, int>(undo_pos.Item1, undo_pos.Item2, undo_value);
-        }
-
-        public override bool IsValidAll()
-        {
-            return grid.IsValidAll();
-        }
-
-        public override bool IsValidSudoku()
-        {
-            return grid.IsValidSudoku();
-        }
+ 
 
         public override List<Tuple<int, int>> FindWrongCells(int n, int m)
         {
@@ -1088,97 +1000,22 @@
             return return_obj;
         }
 
-        public override List<Tuple<int, int>> FindWrongCells()
-        {
-            List<Tuple<int, int>> return_obj = new List<Tuple<int, int>>();
-            for (int i = 0; i < grid_size; i++)
-            {
-                return_obj.AddRange(FindWrongCells(GroupType.Row, i));
-            }
-            return return_obj;
-        }
-
         //새로운 스도쿠 생성
         public override void ResetSudoku()
         {
-            input_log.Clear();
-            grid_change_log.Clear();
+            Random random = new Random();
+            int index = random.Next(game_data_list.Count);
+            JigsawSudokuData current_game = game_data_list[index];
 
-            grid_change_log.Push(grid.GetGridValue());
+            ClearLog();
 
-            this.fixed_cells = GridGenerator.GenerateRandomFixedCellGrid(grid_size, fixed_cnt);
+            SetFixedCellGrid();
+
+            SetAreaGroupGrid(current_game.AreaGroupArray);
+
+            FillGridValue(current_game.GridValueArray);
 
             ResetNonFixedCells();
-        }
-
-        //중복값 확인 메소드
-        public bool IsValidGroup(GroupType group_type, int group_num)
-        {
-            return grid.IsValidGroup(group_type, group_num);
-        }
-
-        public bool IsValidInput(int n, int m)
-        {
-            if (!IsValidGroup(GroupType.Row, n))
-                return false;
-            if (!IsValidGroup(GroupType.Colum, m))
-                return false;
-            if (!IsValidGroup(GroupType.Area, area_group_grid[n, m]))
-                return false;
-            return true;
-        }
-
-        //중복값을 가진 셀의 위치를 리스트로 반환하는 메소드
-        public List<Tuple<int, int>> FindWrongCells(GroupType group_type, int group_num)
-        {
-            return grid.FindWrongCells(group_type, group_num);
-        }
-
-        //해당 셀이 고정됬는지 확인하는 메소드
-        public bool IsFixedCell(int n, int m)
-        {
-            return fixed_cells[n, m];
-        }
-        
-        //메소드 구현을 위한 private 메소드
-
-        private void FillGridValue(int[,] InitGird)
-        {
-            int rows = InitGird.GetLength(0);
-            int cols = InitGird.GetLength(1);
-
-            if (rows != grid_size || cols != grid_size)
-            {
-                Environment.FailFast("게임판에 맞는 배열을 입력하세요.");
-                return;
-            }
-
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < cols; j++)
-                    grid[i, j] = InitGird[i, j];
-            }
-        }
-
-        private void InitGridValue()
-        {
-            for (int i = 0; i < this.GridSize; i++)
-                for (int j = 0; j < this.GridSize; j++)
-                    grid[i, j] = 0;
-        }
-
-        private void ResetNonFixedCells()
-        {
-            for (int i = 0; i < this.GridSize; i++)
-            {
-                for (int j = 0; j < this.GridSize; j++)
-                {
-                    if (!fixed_cells[i, j])
-                    {
-                        grid[i, j] = 0;
-                    }
-                }
-            }
         }
     }
 
