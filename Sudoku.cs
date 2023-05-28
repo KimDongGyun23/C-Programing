@@ -42,14 +42,14 @@ namespace Sudoku_Play
         Color INVALIDCOLOR = Color.IndianRed;
         Color ODDCOLOR = Color.DarkGray;
 
-        /// 난이도/mode    9*9    4*4   16*16   홀짝    사무라이
-        ///     EASY        30     5      95     30       130
-        ///     MEDIUM      25     5      80     25       115
-        ///     HARD        20     5      65     20       100
+        /// 난이도/mode    9*9    4*4   16*16   홀짝    사무라이     직쏘
+        ///     EASY        40     5      95     40       130         40
+        ///     MEDIUM      35     5      80     35       115         35
+        ///     HARD        30     5      65     30       100         30
         int [,] fixedCnt = {
-            {30, 5, 95, 30, 130},
-            {25, 5, 80, 25, 115},
-            {20, 5, 65, 20, 100}
+            {40, 5, 95, 40, 130, 40},
+            {35, 5, 80, 35, 115, 35},
+            {30, 5, 65, 30, 100, 30}
         };
 
         public Sudoku()
@@ -158,6 +158,8 @@ namespace Sudoku_Play
                     if (inputValue >= MININPUTVALUE && inputValue <= MAXINPUTVALUE)
                     {
                         GameBoard[cellX, cellY] = inputValue;
+                        cells[cellNumber].ForeColor = Color.Black;
+                        cells[cellNumber].Font = new Font(cells[cellNumber].Font, FontStyle.Regular);
                         cells[cellNumber].Text = inputValue.ToString();
                     }
                     else if (inputValue == 0)
@@ -366,6 +368,11 @@ namespace Sudoku_Play
             {
                 GameBoard = new SamuraiSudokuGameBoard(fixedCnt[level, mode]);
             }
+            // 직쏘 스도쿠
+            else if (mode == 5)
+            {
+                GameBoard = new JigsawSudokuGameBoard(fixedCnt[level, mode],3);
+            }
 
             GameBoard.ResetSudoku();
             Point[,] inputBoxPositions = draw_grid.DrawBoard(cell_edge_len, point, GameBoard.AreaGroup, GameBoard.GridSize, this);
@@ -411,7 +418,6 @@ namespace Sudoku_Play
                     if (!GameBoard.IsFixed[i, j])
                     {
                         cell.Text = "";
-
                         cell.MouseDoubleClick += Cell_DoubleClick;
                     }
                     else
@@ -419,12 +425,12 @@ namespace Sudoku_Play
                         cell.ForeColor = Color.Green;
                         cell.Font = new Font(cell.Font, FontStyle.Bold);
                         cell.Text = GameBoard[i, j].ToString();
+                        
                     }
                     if (mode == 3)
                     {
                         if (GameBoard.GetColoredGrid()[i, j])
                             cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR;
-
                         cell.MouseDoubleClick += Cell_DoubleClick;
                     }
                     // add cell event
@@ -655,6 +661,25 @@ namespace Sudoku_Play
             point.X = 220;
             point.Y = 139;
             MAXINPUTVALUE = 9;
+        }
+
+        // 직쏘 스도쿠
+        private void StripJigsaw_Click(object sender, EventArgs e)
+        {
+            mode = 5;
+            foreach (Label cell in cells)
+                Controls.Remove(cell);  // 셀 지움
+
+            Invalidate();               // 그리드 그래픽 지움
+
+            this.Width = 830;           // 폼 크기 변경
+            this.Height = 600;
+
+            cells = new List<Label>();  // 셀 초기화
+            point.X = 220;
+            point.Y = 139;
+            MAXINPUTVALUE = 9;
+
         }
 
         // 난이도 Easy 모드
