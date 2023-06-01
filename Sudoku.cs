@@ -678,7 +678,6 @@ namespace Sudoku_Play
             point.X = 220;
             point.Y = 139;
             MAXINPUTVALUE = 9;
-
         }
 
         // 난이도 Easy 모드
