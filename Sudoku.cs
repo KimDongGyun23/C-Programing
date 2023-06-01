@@ -114,8 +114,24 @@ namespace Sudoku_Play
                     int col = cellNumber / GameBoard.GridSize;
                     int row = cellNumber % GameBoard.GridSize;
 
-                    if (GameBoard.GetColoredGrid()[col, row]) cell.BackColor = ODDCOLOR;
-                    else cell.BackColor = DEFAULTCOLOR;
+                    if (GameBoard.GetColoredGrid()[col, row])
+                    {
+                        cell.BackColor = ODDCOLOR;
+                        if(cell.HasChildren)
+                        {
+                            int index = cell.Controls.Count - 1;
+                            cell.Controls[index].BackColor = ODDCOLOR;
+                        }
+                    }
+                    else
+                    {
+                        cell.BackColor = DEFAULTCOLOR;
+                        if (cell.HasChildren)
+                        {
+                            int index = cell.Controls.Count - 1;
+                            cell.Controls[index].BackColor = DEFAULTCOLOR;
+                        }
+                    }
                 }
                 else
                 {
@@ -236,6 +252,13 @@ namespace Sudoku_Play
         {
             foreach (Label cell in cells)
             {
+                // delete InputCell
+                if(cell.HasChildren)
+                {
+                    int index = cell.Controls.Count - 1;
+                    cell.Controls.RemoveAt(index);
+                }
+
                 // reset cell properties
                 cell.Text = null;
                 cell.BackColor = DEFAULTCOLOR;
@@ -445,6 +468,13 @@ namespace Sudoku_Play
                 {
                     for (int j = 0; j < GameBoard.GridSize; j++)
                     {
+                        // delete InputCell
+                        if (cells[GameBoard.GridSize * i + j].HasChildren)
+                        {
+                            int index = cells[GameBoard.GridSize * i + j].Controls.Count - 1;
+                            cells[GameBoard.GridSize * i + j].Controls.RemoveAt(index);
+                        }
+
                         // 유효성 검사
                         foreach (Tuple<int, int> tuple in GameBoard.FindWrongCells(i, j))
                         {
