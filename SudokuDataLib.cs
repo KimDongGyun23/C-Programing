@@ -714,7 +714,7 @@ namespace SudokuDataLib
                     int col = coordinate[0].Item2;
                     int grid_num = coordinate[0].Item3;
                     
-                    return grid[coordinate[0].Item3][row, col];
+                    return grid[grid_num][row, col];
                 }
                 else
                 {
@@ -812,19 +812,19 @@ namespace SudokuDataLib
                 var wrong_cell = grid[coordinate.Item3].FindWrongCells(GroupType.Row, coordinate.Item1);
                 foreach (var cell in wrong_cell)
                 {
-                    return_obj.Add(ConvertCoordinate(new Tuple<int, int, int>(coordinate.Item3, cell.Item1, cell.Item2)));
+                    return_obj.Add(ConvertCoordinate(new Tuple<int, int, int>( cell.Item1, cell.Item2, coordinate.Item3)));
                 }
 
                 wrong_cell = grid[coordinate.Item3].FindWrongCells(GroupType.Colum, coordinate.Item2);
                 foreach (var cell in wrong_cell)
                 {
-                    return_obj.Add(ConvertCoordinate(new Tuple<int, int, int>(coordinate.Item3, cell.Item1, cell.Item2)));
+                    return_obj.Add(ConvertCoordinate(new Tuple<int, int, int>(cell.Item1, cell.Item2, coordinate.Item3)));
                 }
 
                 wrong_cell = grid[coordinate.Item3].FindWrongCells(GroupType.Area, tem_area_info[coordinate.Item1, coordinate.Item2]);
                 foreach (var cell in wrong_cell)
                 {
-                    return_obj.Add(ConvertCoordinate(new Tuple<int, int, int>(coordinate.Item3, cell.Item1, cell.Item2)));
+                    return_obj.Add(ConvertCoordinate(new Tuple<int, int, int>(cell.Item1, cell.Item2, coordinate.Item3)));
                 }
             }
 
@@ -888,8 +888,8 @@ namespace SudokuDataLib
             List<Tuple<int, int, int>> return_obj = new List<Tuple<int, int, int>>();
             Tuple<int, int>[] coordinate = new Tuple<int, int>[5];
             coordinate[0] = new Tuple<int, int>(n, m);
-            coordinate[1] = new Tuple<int, int>(n-12, m);
-            coordinate[2] = new Tuple<int, int>(n, m-12);
+            coordinate[1] = new Tuple<int, int>(n, m - 12);
+            coordinate[2] = new Tuple<int, int>(n - 12, m);
             coordinate[3] = new Tuple<int, int>(n - 12, m - 12);
             coordinate[4] = new Tuple<int, int>(n - 6, m - 6);
             for(int i=0;i<grid_cnt;i++)
@@ -910,13 +910,13 @@ namespace SudokuDataLib
                 case 0:
                     return new Tuple<int, int>(coodinate.Item1, coodinate.Item2);
                 case 1:
-                    return new Tuple<int, int>(coodinate.Item1 - 12, coodinate.Item2);
+                    return new Tuple<int, int>(coodinate.Item1 , coodinate.Item2 + 12);
                 case 2:
-                    return new Tuple<int, int>(coodinate.Item1, coodinate.Item2 - 12);
+                    return new Tuple<int, int>(coodinate.Item1 + 12, coodinate.Item2);
                 case 3:
-                    return new Tuple<int, int>(coodinate.Item1 - 12, coodinate.Item2 - 12);
+                    return new Tuple<int, int>(coodinate.Item1 + 12, coodinate.Item2 + 12);
                 case 4:
-                    return new Tuple<int, int>(coodinate.Item1 - 6, coodinate.Item2 - 6);
+                    return new Tuple<int, int>(coodinate.Item1 + 6, coodinate.Item2 + 6);
                 default:
                     break;
             }

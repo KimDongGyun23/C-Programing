@@ -1,0 +1,17 @@
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.AssemblyReference.cache
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.Sudoku.resources
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.GenerateResource.cache
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfoInputs.cache
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.AssemblyInfo.cs
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.csproj.CoreCompileInputs.cache
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.exe
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.deps.json
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.runtimeconfig.json
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\bin\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.dll
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\refint\Sudoku_Play.dll
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.pdb
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
