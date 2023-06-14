@@ -8,17 +8,11 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\qqdld\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\woohe\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
->>>>>>> main
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\C-Programing\\Sudoku_Play.csproj",
       "projectName": "Sudoku_Play",
       "projectPath": "C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\C-Programing\\Sudoku_Play.csproj",
@@ -31,24 +25,6 @@
       ],
       "originalTargetFrameworks": [
         "net6.0-windows"
-=======
-      "projectUniqueName": "C:\\Users\\woohe\\OneDrive\\바탕 화면\\portfolio\\3-1\\응용소프트웨어실습\\깃허브\\Sudoku_Play.csproj",
-      "projectName": "Sudoku_Play",
-      "projectPath": "C:\\Users\\woohe\\OneDrive\\바탕 화면\\portfolio\\3-1\\응용소프트웨어실습\\깃허브\\Sudoku_Play.csproj",
-      "packagesPath": "C:\\Users\\woohe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\woohe\\OneDrive\\바탕 화면\\portfolio\\3-1\\응용소프트웨어실습\\깃허브\\obj\\",
-      "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
-      "configFilePaths": [
-        "C:\\Users\\woohe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-      ],
-      "originalTargetFrameworks": [
-        "net6.0-windows7.0"
->>>>>>> main
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -75,12 +51,8 @@
           "net47",
           "net471",
           "net472",
-<<<<<<< HEAD
           "net48",
           "net481"
-=======
-          "net48"
->>>>>>> main
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -92,12 +64,16 @@
             "privateAssets": "none"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
->>>>>>> main
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "캐시 파일 C:\\Users\\qqdld\\Desktop\\Dev\\C#_project\\C-Programing\\obj\\project.nuget.cache을(를) 읽는 동안 문제가 발생했습니다. Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -224,3 +224,4 @@ C:\Users\didwj\Desktop\Stuffs\C#\C-Programing\obj\Debug\net6.0-windows\Sudoku_Pl
 C:\Users\didwj\Desktop\Stuffs\C#\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.genruntimeconfig.cache
 C:\Users\didwj\Desktop\Stuffs\C#\C-Programing\obj\Debug\net6.0-windows\ref\Sudoku_Play.dll
 >>>>>>> main
+C:\Users\qqdld\Desktop\Dev\C#_project\C-Programing\obj\Debug\net6.0-windows\Sudoku_Play.Properties.Resources.resources
