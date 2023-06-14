@@ -12,8 +12,14 @@
       }
     ],
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\qqdld\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\qqdld\\.nuget\\packages"
+=======
+      "C:\\Users\\woohe\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\woohe\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+>>>>>>> main
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

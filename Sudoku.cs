@@ -42,14 +42,14 @@ namespace Sudoku_Play
         Color INVALIDCOLOR = Color.IndianRed;
         Color ODDCOLOR = Color.DarkGray;
 
-        /// 난이도/mode    9*9    4*4   16*16   홀짝    사무라이
-        ///     EASY        30     5      95     30       130
-        ///     MEDIUM      25     5      80     25       115
-        ///     HARD        20     5      65     20       100
+        /// 난이도/mode    9*9    4*4   16*16   홀짝    사무라이     직쏘
+        ///     EASY        50     5      95     50       170         50
+        ///     MEDIUM      43     5      80     43       160         43
+        ///     HARD        36     5      65     36       150         36
         int [,] fixedCnt = {
-            {30, 5, 95, 30, 130},
-            {25, 5, 80, 25, 115},
-            {20, 5, 65, 20, 100}
+            {50, 5, 95, 50, 170, 50},
+            {43, 5, 80, 43, 160, 43},
+            {36, 5, 65, 36, 150, 36}
         };
 
         public Sudoku()
@@ -114,8 +114,24 @@ namespace Sudoku_Play
                     int col = cellNumber / GameBoard.GridSize;
                     int row = cellNumber % GameBoard.GridSize;
 
-                    if (GameBoard.GetColoredGrid()[col, row]) cell.BackColor = ODDCOLOR;
-                    else cell.BackColor = DEFAULTCOLOR;
+                    if (GameBoard.GetColoredGrid()[col, row])
+                    {
+                        cell.BackColor = ODDCOLOR;
+                        if (cell.HasChildren)
+                        {
+                            int index = cell.Controls.Count - 1;
+                            cell.Controls[index].BackColor = ODDCOLOR;
+                        }
+                    }
+                    else
+                    {
+                        cell.BackColor = DEFAULTCOLOR;
+                        if (cell.HasChildren)
+                        {
+                            int index = cell.Controls.Count - 1;
+                            cell.Controls[index].BackColor = DEFAULTCOLOR;
+                        }
+                    }
                 }
                 else
                 {
@@ -147,7 +163,7 @@ namespace Sudoku_Play
 
             if (e.KeyChar == (char)Keys.Return)
             {
-                if (inputCell.Text.All(char.IsDigit)) // check text has non-numbers
+                if (inputCell.Text.Length != 0 && inputCell.Text.All(char.IsDigit)) // check text has non-numbers
                 {
                     int inputValue = Int32.Parse(inputCell.Text);
 
@@ -158,6 +174,8 @@ namespace Sudoku_Play
                     if (inputValue >= MININPUTVALUE && inputValue <= MAXINPUTVALUE)
                     {
                         GameBoard[cellX, cellY] = inputValue;
+                        cells[cellNumber].ForeColor = Color.Black;
+                        cells[cellNumber].Font = new Font(cells[cellNumber].Font, FontStyle.Regular);
                         cells[cellNumber].Text = inputValue.ToString();
                     }
                     else if (inputValue == 0)
@@ -236,6 +254,13 @@ namespace Sudoku_Play
         {
             foreach (Label cell in cells)
             {
+                // delete InputCell
+                if (cell.HasChildren)
+                {
+                    int index = cell.Controls.Count - 1;
+                    cell.Controls.RemoveAt(index);
+                }
+
                 // reset cell properties
                 cell.Text = null;
                 cell.BackColor = DEFAULTCOLOR;
@@ -366,6 +391,11 @@ namespace Sudoku_Play
             {
                 GameBoard = new SamuraiSudokuGameBoard(fixedCnt[level, mode]);
             }
+            // 직쏘 스도쿠
+            else if (mode == 5)
+            {
+                GameBoard = new JigsawSudokuGameBoard(fixedCnt[level, mode],3);
+            }
 
             GameBoard.ResetSudoku();
             Point[,] inputBoxPositions = draw_grid.DrawBoard(cell_edge_len, point, GameBoard.AreaGroup, GameBoard.GridSize, this);
@@ -411,6 +441,7 @@ namespace Sudoku_Play
                     if (!GameBoard.IsFixed[i, j])
                     {
                         cell.Text = "";
+                        cell.MouseDoubleClick += Cell_DoubleClick;
                     }
                     else
                     {
@@ -422,10 +453,9 @@ namespace Sudoku_Play
                     if (mode == 3)
                     {
                         if (GameBoard.GetColoredGrid()[i, j])
-                            cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR; 
+                            cells[GameBoard.GridSize * i + j].BackColor = ODDCOLOR;
                     }
                     // add cell event
-                    cell.MouseDoubleClick += Cell_DoubleClick;
                     cell.MouseEnter += Cell_Enter;
                     cell.MouseLeave += Cell_Leave;
                 }
@@ -435,6 +465,21 @@ namespace Sudoku_Play
         // Correct 버튼 구현
         private void BtnCorrect_Click(object sender, EventArgs e)
         {
+            for(int i = 0; i < GameBoard.GridSize; i++)
+            {
+                for(int j = 0; j < GameBoard.GridSize; j++)
+                {
+                    // delete InputCell
+                    if (cells[GameBoard.GridSize * i + j].HasChildren)
+                    {
+                        int index = cells[GameBoard.GridSize * i + j].Controls.Count - 1;
+                        cells[GameBoard.GridSize * i + j].Controls.RemoveAt(index);
+                        cells[GameBoard.GridSize * i + j].Text = "";
+                        GameBoard[i, j] = 0;
+                    }
+                }
+            }
+
             if (!GameBoard.IsValidAll())
             {
                 lblText.Text = "틀린 부분이 있군요. 다시 생각해보세요.";
@@ -450,12 +495,6 @@ namespace Sudoku_Play
                             cells[GameBoard.GridSize * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
                         }
                     }
-                    /*// 유효성 검사 -> 함수 사용 잘못함
-                    foreach (Tuple<int, int> tuple in GameBoard.FindWrongCells())
-                    {
-                        isValid[GameBoard.GridSize * tuple.Item1 + tuple.Item2] = false;
-                        cells[GameBoard.GridSize * tuple.Item1 + tuple.Item2].BackColor = INVALIDCOLOR;
-                    }*/
                 }
             }
             else
@@ -655,6 +694,24 @@ namespace Sudoku_Play
             MAXINPUTVALUE = 9;
         }
 
+        // 직쏘 스도쿠
+        private void StripJigsaw_Click(object sender, EventArgs e)
+        {
+            mode = 5;
+            foreach (Label cell in cells)
+                Controls.Remove(cell);  // 셀 지움
+
+            Invalidate();               // 그리드 그래픽 지움
+
+            this.Width = 830;           // 폼 크기 변경
+            this.Height = 600;
+
+            cells = new List<Label>();  // 셀 초기화
+            point.X = 220;
+            point.Y = 139;
+            MAXINPUTVALUE = 9;
+        }
+
         // 난이도 Easy 모드
         private void StripEasy_Click(object sender, EventArgs e)
         {
@@ -675,7 +732,6 @@ namespace Sudoku_Play
             level = 2;
             lblLevel.Text = "난이도 : Hard";
         }
-
 
     }
 }
